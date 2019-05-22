@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: io.florianlopes:spring-mvc-test-utils:2.2.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/florianlopes/spring-mvc-test-utils/2.2.1/spring-mvc-test-utils-2.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/io/florianlopes/spring-mvc-test-utils/2.2.1/spring-mvc-test-utils-2.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/florianlopes/spring-mvc-test-utils/2.2.1/spring-mvc-test-utils-2.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
