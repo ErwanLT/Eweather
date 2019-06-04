@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>404</title>
-    <div th:replace="fragments/header :: header-css" />
+    <title>- ooops! -</title>
+    <link rel="stylesheet" type="text/css" href="./css/404.css" />
 </head>
 <body>
-<div th:replace="fragments/header :: header" />
-<div class="container">
-    <img
-            src="https://cdn.dribbble.com/users/11867/screenshots/2049610/404.jpg" />
-</div>
+    <div class="bg">
+        <div class="center">
+            <p class="big">404</p>
+            <p>page not found</p>
+            <p>Maybe the page you are looking for was eaten by a black hole</p>
+        </div>
+    </div>
 </body>
 </html>
