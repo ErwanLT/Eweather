@@ -23,30 +23,40 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.eletutour.eweather.form;
+package com.eletutour.eweather.configuration;
 
-import io.swagger.annotations.ApiParam;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * form of the main page
- *
- * @author ewanletutour
- * @since 1.0.0
- */
-@Getter
-@Setter
-@Data
-public class CoordinateForm {
+import java.util.Collections;
 
-    @ApiParam(name = "location", value = "A string like city name, country name, or postal code", required = true)
-    private String location;
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build()
+                .apiInfo(apiInfo());
+    }
 
-    public CoordinateForm(){}
-
-    public CoordinateForm(String location) {
-        this.location = location;
+    private ApiInfo apiInfo(){
+        return new ApiInfo(
+                "EWeather API",
+                "Some custom description of API.",
+                "1.0.O",
+                "",
+                new Contact("Erwan Le Tutour", "https://github.com/ErwanLT", "erwanletutour.elt@gmail.com"),
+                "License of API", "https://github.com/ErwanLT/Eweather/blob/master/LICENSE", Collections.emptyList());
     }
 }
