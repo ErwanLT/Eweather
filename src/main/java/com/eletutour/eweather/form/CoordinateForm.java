@@ -41,7 +41,7 @@ import lombok.Setter;
 @Data
 public class CoordinateForm {
 
-    @ApiParam(name = "location", value = "A string like city name, country name, or postal code", required = true)
+    @ApiParam(name = "location", value = "A string like city name, country name, or postal code", required = true, example = "Paris or 75001")
     private String location;
 
     public CoordinateForm(){}

@@ -31,10 +31,7 @@ import com.eletutour.eweather.form.Forecast;
 import com.eletutour.eweather.services.ResponseToFormService;
 import com.eletutour.eweather.services.WeatherService;
 import com.eletutour.eweather.utils.MessageHelper;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,13 +40,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.util.StringUtils;
 
-@Controller
+
 /**
  * Main controller for the {@link com.eletutour.eweather.EweatherApplication} web page
  *
  * @author eletutour
  * @since 1.0.0
  */
+@Controller
 public class WeatherController {
 
 
@@ -96,7 +94,7 @@ public class WeatherController {
 
     @PostMapping("/getWeather")
     @ApiOperation(value = "get the weather for the given location",
-                  response = String.class)
+                  response = String.class, produces = "text/html")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "the weather for the given location", response = Forecast.class),
             @ApiResponse(code = 404, message = "Page not found") })
