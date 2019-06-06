@@ -94,10 +94,12 @@ public class WeatherController {
 
     @PostMapping("/getWeather")
     @ApiOperation(value = "get the weather for the given location",
-                  response = String.class, produces = "text/html")
+                  response = String.class,
+                  produces = "text/html")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "the weather for the given location", response = Forecast.class),
-            @ApiResponse(code = 404, message = "Page not found") })
+            @ApiResponse(code = 404, message = "Page eaten by a black hole"),
+            @ApiResponse(code = 500, message = "Congratulation, you broke the internet")})
     public String getWeather(@ApiParam(value = "A form with the wanted location", required = true) @ModelAttribute("coordinateForm")CoordinateForm coordinateForm, Model model){
 
         CoordinateForm form = new CoordinateForm();
