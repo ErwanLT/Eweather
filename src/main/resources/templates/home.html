@@ -7,6 +7,7 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
+<main>
 <div class="container-fluid">
     <div id="alertDiv">
         <th:block th:if="${message != null}">
@@ -28,7 +29,7 @@
         <div th:replace="fragments/currently :: currently"/>
         <br><br>
         <div th:replace="fragments/hours :: hours"/>
-        <br><br>
+        <br>
         <div th:replace="fragments/week :: week"/>
         <br>
         <div class="row">
@@ -40,6 +41,7 @@
         </div>
     </div>
 </div>
+</main>
 <br>
 <div th:replace="fragments/footer :: footer"/>
 </body>

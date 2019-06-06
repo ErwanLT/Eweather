@@ -31,7 +31,10 @@ import com.eletutour.eweather.form.Forecast;
 import com.eletutour.eweather.services.ResponseToFormService;
 import com.eletutour.eweather.services.WeatherService;
 import com.eletutour.eweather.utils.MessageHelper;
-import io.swagger.annotations.*;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +42,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -115,6 +121,16 @@ public class WeatherController {
             }
 
             Forecast f = responseToForm.darkskyResponseToForm(forecast);
+
+            List<String> hours = new ArrayList<>();
+            List<Integer> temperatures = new ArrayList<>();
+            f.getHours().stream().forEach(hourly ->{
+                hours.add(hourly.getTime()+"h");
+                temperatures.add(hourly.getTemperature());
+            });
+
+            model.addAttribute("hoursChart", hours);
+            model.addAttribute("temperatureChart", temperatures);
 
             model.addAttribute("forecast", f);
         }
