@@ -63,15 +63,28 @@
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Temperature evolution',
+                            label: 'Temperature',
                             fill: false,
                             borderColor: 'rgb(255, 99, 132)',
                             data: /*[[${temperatureChart}]]*/ 'default'
+                        },{
+                            label: 'Apparent Temperature',
+                            fill: false,
+                            borderColor: 'rgb(66, 134, 244)',
+                            data: /*[[${apparentTemperatureChart}]]*/ 'default'
                         }]
                     },
 
                     // Configuration options go here
                     options: {
+                        title: {
+                            display: true,
+                            text: 'Temperature evolution',
+                            position: 'top'
+                        },
+                        tooltips: {
+                            enabled: false
+                        },
                         responsive:true
                     }
                 });

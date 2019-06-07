@@ -124,13 +124,16 @@ public class WeatherController {
 
             List<String> hours = new ArrayList<>();
             List<Integer> temperatures = new ArrayList<>();
-            f.getHours().stream().forEach(hourly ->{
+            List<Integer> apparentTemperatures = new ArrayList<>();
+            f.getHours().stream().limit(24).forEach(hourly ->{
                 hours.add(hourly.getTime()+"h");
                 temperatures.add(hourly.getTemperature());
+                apparentTemperatures.add(hourly.getApparentTemperature());
             });
 
             model.addAttribute("hoursChart", hours);
             model.addAttribute("temperatureChart", temperatures);
+            model.addAttribute("apparentTemperatureChart", apparentTemperatures);
 
             model.addAttribute("forecast", f);
         }
