@@ -23,20 +23,26 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.eletutour.eweather.services;
+package com.eletutour.eweather.services.implementations;
 
 
-import com.eletutour.eweather.utils.ApiUtils;
+import com.eletutour.eweather.services.Constants;
+import com.eletutour.eweather.services.interfaces.IApiService;
+import com.eletutour.eweather.services.interfaces.IDarkSkyService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class DarkSkyService extends ApiUtils {
+public class DarkSkyService implements IDarkSkyService {
 
+    @Autowired
+    private IApiService apiService;
+
+    @Override
     public String callApi(String latitude, String longitude) {
-        String darkSkyUrl = ApiUtils.getDarkSkyUrl(latitude,longitude);
+        return apiService.callApiWithUrl(Constants.getDarkSkyUrl(latitude, longitude));
 
-        return callApiWithUrl(darkSkyUrl);
     }
 }

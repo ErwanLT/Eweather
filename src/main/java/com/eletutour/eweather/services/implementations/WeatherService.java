@@ -23,11 +23,15 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.eletutour.eweather.services;
+package com.eletutour.eweather.services.implementations;
 
 
 import com.eletutour.eweather.datapoint.ForecastResponse;
 import com.eletutour.eweather.datapoint.LocationData;
+import com.eletutour.eweather.services.interfaces.IDarkSkyService;
+import com.eletutour.eweather.services.interfaces.IGsonService;
+import com.eletutour.eweather.services.interfaces.ILocationService;
+import com.eletutour.eweather.services.interfaces.IWeatherService;
 import com.eletutour.eweather.utils.FakeForecastUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +39,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class WeatherService {
+public class WeatherService implements IWeatherService {
 
-    private final GsonService gsonService;
+    private final IGsonService gsonService;
 
-    private final DarkSkyService darkSkyService;
+    private final IDarkSkyService darkSkyService;
 
-    private final LocationIQService locationIQService;
+    private final ILocationService locationIQService;
 
     @Autowired
-    public WeatherService(GsonService gsonService, DarkSkyService darkSkyService, LocationIQService locationIQService){
+    public WeatherService(IGsonService gsonService, IDarkSkyService darkSkyService, ILocationService locationIQService){
         this.gsonService = gsonService;
         this.darkSkyService = darkSkyService;
         this.locationIQService = locationIQService;
     }
 
+    @Override
     public ForecastResponse getForecast(String location){
 
         if(location.isEmpty()){
@@ -77,7 +82,7 @@ public class WeatherService {
         return forecastResponse;
     }
 
-
+    @Override
     public ForecastResponse getForecast(String latitude, String longitude, String location) {
 
         ForecastResponse forecast;

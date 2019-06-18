@@ -31,7 +31,7 @@ import com.eletutour.eweather.form.Alert;
 import com.eletutour.eweather.form.Currently;
 import com.eletutour.eweather.form.Daily;
 import com.eletutour.eweather.form.Hourly;
-import com.eletutour.eweather.services.*;
+import com.eletutour.eweather.services.implementations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Rule;
 import org.junit.rules.TestRule;

@@ -23,20 +23,31 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.eletutour.eweather.services;
+package com.eletutour.eweather.services.implementations;
 
-import com.eletutour.eweather.utils.ApiUtils;
+import com.eletutour.eweather.datapoint.ForecastResponse;
+import com.eletutour.eweather.datapoint.LocationData;
+import com.eletutour.eweather.services.interfaces.IGsonService;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class LocationIQService extends ApiUtils {
+public class GsonService implements IGsonService {
 
-    public String callApi(String location) {
+    @Override
+    public ForecastResponse stringToForecast(String darkSkyResponse){
+        Gson g = new Gson();
 
-        String locationiqUrl = ApiUtils.getLocationiqUrl(location);
+        return g.fromJson(darkSkyResponse, ForecastResponse.class);
 
-        return ApiUtils.callApiWithUrl(locationiqUrl);
+    }
+
+    @Override
+    public LocationData[] stringToLocations(String locationIQResponse){
+        Gson g = new Gson();
+
+        return g.fromJson(locationIQResponse, LocationData[].class);
     }
 }

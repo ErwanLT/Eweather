@@ -28,8 +28,8 @@ package com.eletutour.eweather.controller;
 import com.eletutour.eweather.datapoint.ForecastResponse;
 import com.eletutour.eweather.form.CoordinateForm;
 import com.eletutour.eweather.form.Forecast;
-import com.eletutour.eweather.services.ResponseToFormService;
-import com.eletutour.eweather.services.WeatherService;
+import com.eletutour.eweather.services.interfaces.IResponseToFormService;
+import com.eletutour.eweather.services.interfaces.IWeatherService;
 import com.eletutour.eweather.utils.MessageHelper;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -57,13 +57,13 @@ import java.util.List;
 public class WeatherController {
 
 
-    private final WeatherService weatherService;
+    private final IWeatherService weatherService;
 
 
-    private final ResponseToFormService responseToForm;
+    private final IResponseToFormService responseToForm;
 
     @Autowired
-    public WeatherController(WeatherService weatherService, ResponseToFormService responseToForm){
+    public WeatherController(IWeatherService weatherService, IResponseToFormService responseToForm){
         this.weatherService = weatherService;
         this.responseToForm = responseToForm;
     }

@@ -26,6 +26,7 @@
 package com.eletutour.eweather.services;
 
 import com.eletutour.eweather.datapoint.ForecastResponse;
+import com.eletutour.eweather.services.implementations.WeatherService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

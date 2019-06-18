@@ -23,8 +23,9 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.eletutour.eweather.services;
+package com.eletutour.eweather.services.implementations;
 
+import com.eletutour.eweather.services.interfaces.IDateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -34,21 +35,9 @@ import java.time.format.DateTimeFormatter;
 
 @Service
 @Slf4j
-public class DateService {
+public class DateService implements IDateService {
 
-
-    public static final String FORMAT_DD_MM_YYYY = "dd/MM/yyyy";
-
-    public static final String FORMAT_DD_MM_YYYY_HH_MM = "dd/MM/yyyy hh:mm";
-
-    public static final String FORMAT_DD_MM_YYYY_HH = "dd/MM/yyyy HH";
-
-    public static final String FORMAT_HH_MM = "hh:mm";
-
-    public static final String FORMAT_EEEE_D_MMM_YYYY = "EEEE, d MMM yyyy";
-
-    public static final String FORMAT_D_MMM_YYYY = "d MMM yyyy";
-
+    @Override
     public String dateFromInstant(String time, String format, String zoneId){
 
         DateTimeFormatter formatter =

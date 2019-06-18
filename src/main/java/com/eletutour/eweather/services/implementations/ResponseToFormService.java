@@ -23,10 +23,13 @@
  * THE SOFTWARE.
  * =========================LICENSE_END==================================
  */
-package com.eletutour.eweather.services;
+package com.eletutour.eweather.services.implementations;
 
 import com.eletutour.eweather.datapoint.ForecastResponse;
 import com.eletutour.eweather.form.*;
+import com.eletutour.eweather.services.Constants;
+import com.eletutour.eweather.services.interfaces.IDateService;
+import com.eletutour.eweather.services.interfaces.IResponseToFormService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,18 +39,19 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class ResponseToFormService {
+public class ResponseToFormService implements IResponseToFormService {
 
 
-    private final DateService dateService;
+    private final IDateService dateService;
 
     @Autowired
-    public ResponseToFormService(DateService dateService){
+    public ResponseToFormService(IDateService dateService){
         this.dateService = dateService;
     }
 
     private String timezone;
 
+    @Override
     public Forecast darkskyResponseToForm(ForecastResponse responseForecast){
 
         Forecast f = new Forecast();
@@ -74,8 +78,8 @@ public class ResponseToFormService {
             Alert alert1 = new Alert()
                 .withTitle(alert.getTitle())
                 .withUri(alert.getUri())
-                .withTime(dateService.dateFromInstant(alert.getTime(), dateService.FORMAT_DD_MM_YYYY_HH_MM, timezone))
-                .withExpire(dateService.dateFromInstant(alert.getExpires(), dateService.FORMAT_DD_MM_YYYY_HH_MM, timezone));
+                .withTime(dateService.dateFromInstant(alert.getTime(), Constants.FORMAT_DD_MM_YYYY_HH_MM, timezone))
+                .withExpire(dateService.dateFromInstant(alert.getExpires(), Constants.FORMAT_DD_MM_YYYY_HH_MM, timezone));
             alertsList.add(alert1);
         }
         return alertsList;
@@ -87,7 +91,7 @@ public class ResponseToFormService {
         for (com.eletutour.eweather.datapoint.HourlyData data:
              hourly.getData()) {
             hours.add(new Hourly()
-                .withTime(dateService.dateFromInstant(data.getTime(), dateService.FORMAT_DD_MM_YYYY_HH, timezone))
+                .withTime(dateService.dateFromInstant(data.getTime(), Constants.FORMAT_DD_MM_YYYY_HH, timezone))
                 .withSummary(data.getSummary())
                 .withIcon(data.getIcon())
                 .withTemperature((int) Math.round(data.getTemperature()))
@@ -124,11 +128,11 @@ public class ResponseToFormService {
         for (com.eletutour.eweather.datapoint.DailyData data: daily.getData()) {
             week.add(new Daily()
             .withId(id)
-            .withTime(dateService.dateFromInstant(data.getTime(), dateService.FORMAT_D_MMM_YYYY, timezone))
+            .withTime(dateService.dateFromInstant(data.getTime(), Constants.FORMAT_D_MMM_YYYY, timezone))
             .withIcon(data.getIcon())
             .withSummary(data.getSummary())
-            .withSunriseTime(dateService.dateFromInstant(data.getSunriseTime(), dateService.FORMAT_HH_MM, timezone))
-            .withSunsetTime(dateService.dateFromInstant(data.getSunsetTime(), dateService.FORMAT_HH_MM, timezone))
+            .withSunriseTime(dateService.dateFromInstant(data.getSunriseTime(), Constants.FORMAT_HH_MM, timezone))
+            .withSunsetTime(dateService.dateFromInstant(data.getSunsetTime(), Constants.FORMAT_HH_MM, timezone))
             .withTemperatureMax((int) Math.round(data.getTemperatureMax()))
             .withTemperatureMin((int) Math.round(data.getTemperatureMin()))
             .withMoonPhase(data.getMoonPhase()));

@@ -30,7 +30,7 @@ import com.eletutour.eweather.ForecastResponse;
 import com.eletutour.eweather.LocationIQResponse;
 import com.eletutour.eweather.form.CoordinateForm;
 import com.eletutour.eweather.form.Forecast;
-import com.eletutour.eweather.services.*;
+import com.eletutour.eweather.services.implementations.*;
 import com.eletutour.eweather.utils.Message;
 import org.junit.Before;
 import org.junit.Test;
