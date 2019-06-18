@@ -27,6 +27,8 @@ package com.eletutour.eweather.services.implementations;
 
 import com.eletutour.eweather.datapoint.ForecastResponse;
 import com.eletutour.eweather.datapoint.LocationData;
+import com.eletutour.eweather.services.errors.LocationError;
+import com.eletutour.eweather.services.errors.LocationIQException;
 import com.eletutour.eweather.services.interfaces.IGsonService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -45,9 +47,12 @@ public class GsonService implements IGsonService {
     }
 
     @Override
-    public LocationData[] stringToLocations(String locationIQResponse){
+    public LocationData[] stringToLocations(String locationIQResponse) throws LocationIQException {
         Gson g = new Gson();
-
+        if(locationIQResponse.contains("error")){
+            LocationError error = g.fromJson(locationIQResponse, LocationError.class);
+            throw new LocationIQException(error.getError());
+        }
         return g.fromJson(locationIQResponse, LocationData[].class);
     }
 }

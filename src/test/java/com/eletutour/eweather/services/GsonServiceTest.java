@@ -29,6 +29,7 @@ import com.eletutour.eweather.CommonForTest;
 import com.eletutour.eweather.LocationIQResponse;
 import com.eletutour.eweather.datapoint.ForecastResponse;
 import com.eletutour.eweather.datapoint.LocationData;
+import com.eletutour.eweather.services.errors.LocationIQException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -81,7 +82,7 @@ public class GsonServiceTest extends CommonForTest {
     }
 
     @Test
-    public void deserializeLocationIQResponse(){
+    public void deserializeLocationIQResponse() throws LocationIQException {
         LocationData[] l = gsonService.stringToLocations(locationIQResponse);
         assertThat(l).isNotNull();
     }

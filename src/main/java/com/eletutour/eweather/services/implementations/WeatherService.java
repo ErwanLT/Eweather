@@ -28,6 +28,7 @@ package com.eletutour.eweather.services.implementations;
 
 import com.eletutour.eweather.datapoint.ForecastResponse;
 import com.eletutour.eweather.datapoint.LocationData;
+import com.eletutour.eweather.services.errors.LocationIQException;
 import com.eletutour.eweather.services.interfaces.IDarkSkyService;
 import com.eletutour.eweather.services.interfaces.IGsonService;
 import com.eletutour.eweather.services.interfaces.ILocationService;
@@ -55,7 +56,7 @@ public class WeatherService implements IWeatherService {
     }
 
     @Override
-    public ForecastResponse getForecast(String location){
+    public ForecastResponse getForecast(String location) throws LocationIQException {
 
         if(location.isEmpty()){
             //ne devrait jamais arriver car champs obligatoire

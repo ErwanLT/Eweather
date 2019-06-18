@@ -28,6 +28,7 @@ package com.eletutour.eweather.controller;
 import com.eletutour.eweather.datapoint.ForecastResponse;
 import com.eletutour.eweather.form.CoordinateForm;
 import com.eletutour.eweather.form.Forecast;
+import com.eletutour.eweather.services.errors.LocationIQException;
 import com.eletutour.eweather.services.interfaces.IResponseToFormService;
 import com.eletutour.eweather.services.interfaces.IWeatherService;
 import com.eletutour.eweather.utils.MessageHelper;
@@ -115,27 +116,33 @@ public class WeatherController {
             //should never happened because it's a required field
             MessageHelper.addDangerAttribute(model, "The location field is null or Empty");
         } else {
-            ForecastResponse forecast = weatherService.getForecast(coordinateForm.getLocation());
-            if ("Fake forecast".equals(forecast.getLocation())){
-                MessageHelper.addWarningAttribute(model, "This is a fake response because something bad happened.");
+            ForecastResponse forecast = null;
+            try {
+                forecast = weatherService.getForecast(coordinateForm.getLocation());
+
+                if ("Fake forecast".equals(forecast.getLocation())){
+                    MessageHelper.addWarningAttribute(model, "This is a fake response because something bad happened.");
+                }
+
+                Forecast f = responseToForm.darkskyResponseToForm(forecast);
+
+                List<String> hours = new ArrayList<>();
+                List<Integer> temperatures = new ArrayList<>();
+                List<Integer> apparentTemperatures = new ArrayList<>();
+                f.getHours().stream().limit(24).forEach(hourly ->{
+                    hours.add(hourly.getTime()+"h");
+                    temperatures.add(hourly.getTemperature());
+                    apparentTemperatures.add(hourly.getApparentTemperature());
+                });
+
+                model.addAttribute("hoursChart", hours);
+                model.addAttribute("temperatureChart", temperatures);
+                model.addAttribute("apparentTemperatureChart", apparentTemperatures);
+
+                model.addAttribute("forecast", f);
+            } catch (LocationIQException e) {
+                MessageHelper.addDangerAttribute(model, e.getMessage());
             }
-
-            Forecast f = responseToForm.darkskyResponseToForm(forecast);
-
-            List<String> hours = new ArrayList<>();
-            List<Integer> temperatures = new ArrayList<>();
-            List<Integer> apparentTemperatures = new ArrayList<>();
-            f.getHours().stream().limit(24).forEach(hourly ->{
-                hours.add(hourly.getTime()+"h");
-                temperatures.add(hourly.getTemperature());
-                apparentTemperatures.add(hourly.getApparentTemperature());
-            });
-
-            model.addAttribute("hoursChart", hours);
-            model.addAttribute("temperatureChart", temperatures);
-            model.addAttribute("apparentTemperatureChart", apparentTemperatures);
-
-            model.addAttribute("forecast", f);
         }
 
         return "home";

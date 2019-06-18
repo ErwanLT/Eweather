@@ -26,6 +26,7 @@
 package com.eletutour.eweather.services;
 
 import com.eletutour.eweather.datapoint.ForecastResponse;
+import com.eletutour.eweather.services.errors.LocationIQException;
 import com.eletutour.eweather.services.implementations.WeatherService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +43,7 @@ public class WeatherServiceTest {
     WeatherService service;
 
     @Test
-    public void test_offline() {
+    public void test_offline() throws LocationIQException {
         ForecastResponse response = service.getForecast("");
         assertThat(response).isNotNull();
         assertThat(response.getCurrently()).isNotNull();
