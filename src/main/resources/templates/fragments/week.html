@@ -27,21 +27,24 @@
                     </div>
                     <div class="panel-collapse collapse" th:id="'day' + ${day.id}">
                         <div class="card-body">
-                            <table>
-                                <tr>
+                              <div class="row">
                                     <comment style="font-size: 15px;font-weight: 600" th:text="${day.summary}"/>
-                                </tr>
-                                <tr>
-                                    <td class="td-width-lg"><span class="bold-span">Minimal:</span><comment th:text="${day.temperatureMin}" />°C</td>
-                                    <td class="td-width-lg"><span class="bold-span">Maximal:</span><comment th:text="${day.temperatureMax}"/>°C</td>
-                                    <td class="td-width-lg">
-                                        <img style="width:30px; height:30px" th:src="@{'./img/unitIcon/sunrise.png'}"><comment th:text="${day.sunriseTime}" />
-                                    </td>
-                                    <td class="td-width-lg">
-                                        <img style="width:30px; height:30px" th:src="@{'./img/unitIcon/sunset.png'}"><comment th:text="${day.sunsetTime}" />
-                                    </td>
-                                    <td class="td-width-lg">
-                                        <comment th:if="${day.moonPhase == 0}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon1.png'}"></comment>
+                              </div>
+                              <div class="row">
+                                    <div class="col">
+                                          <span class="bold-span">Minimal:</span><comment th:text="${day.temperatureMin}" />°C
+                                    </div>
+                                    <div class="col">
+                                          <span class="bold-span">Maximal:</span><comment th:text="${day.temperatureMax}"/>°C
+                                    </div>
+                                    <div class="col">
+                                          <img style="width:30px; height:30px" th:src="@{'./img/unitIcon/sunrise.png'}"><comment th:text="${day.sunriseTime}" />
+                                    </div>
+                                    <div class="col">
+                                          <img style="width:30px; height:30px" th:src="@{'./img/unitIcon/sunset.png'}"><comment th:text="${day.sunsetTime}" />
+                                    </div>
+                                    <div class="col">
+                                          <comment th:if="${day.moonPhase == 0}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon1.png'}"></comment>
                                         <comment th:if="${day.moonPhase > 0 and day.moonPhase < 0.25}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon2.png'}"></comment>
                                         <comment th:if="${day.moonPhase == 0.25}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon3.png'}"></comment>
                                         <comment th:if="${day.moonPhase > 0.25 and day.moonPhase < 0.5}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon4.png'}"></comment>
@@ -49,9 +52,8 @@
                                         <comment th:if="${day.moonPhase > 0.5 and day.moonPhase < 0.75}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon6.png'}"></comment>
                                         <comment th:if="${day.moonPhase == 0.75}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon7.png'}"></comment>
                                         <comment th:if="${day.moonPhase > 0.75}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon8.png'}"></comment>
-                                    </td>
-                                </tr>
-                            </table>
+                                    </div>
+                              </div>
                         </div>
                     </div>
                 </div>
