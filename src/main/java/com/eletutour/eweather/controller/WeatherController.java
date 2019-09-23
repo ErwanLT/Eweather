@@ -129,15 +129,19 @@ public class WeatherController {
                 List<String> hours = new ArrayList<>();
                 List<Integer> temperatures = new ArrayList<>();
                 List<Integer> apparentTemperatures = new ArrayList<>();
+                List<Double> humidity = new ArrayList<>();
+
                 f.getHours().stream().limit(24).forEach(hourly ->{
                     hours.add(hourly.getTime()+"h");
                     temperatures.add(hourly.getTemperature());
                     apparentTemperatures.add(hourly.getApparentTemperature());
                 });
+                humidity.add(f.getCurrently().getHumidity());
 
                 model.addAttribute("hoursChart", hours);
                 model.addAttribute("temperatureChart", temperatures);
                 model.addAttribute("apparentTemperatureChart", apparentTemperatures);
+                model.addAttribute("humidity", humidity);
 
                 model.addAttribute("forecast", f);
             } catch (LocationIQException e) {

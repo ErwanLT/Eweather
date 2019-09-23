@@ -17,7 +17,7 @@
     </div>
 
     <div th:if="${forecast}">
-        <div th:replace="fragments/currentInfo :: currentInfo"/>
+        <div th:replace="fragments/currentInfoV2 :: currentInfoV2"/>
         <br>
         <div th:if="${not #lists.isEmpty(forecast.getAlerts())}">
             <div class="alert alert-danger">
