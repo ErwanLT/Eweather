@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Help</title>
+    <div th:replace="fragments/headerV2 :: header-css-v2"/>
+</head>
+<body>
+<div th:replace="fragments/headerV2 :: header-v2"/>
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header">
+                    Formulaire de recherche
+                </div>
+                <div class="card-body">
+                    <p>
+                        Vous pouvez chercher la météo pour n'importe quel endroit autour du globe (oui, la terre est ronde, n'en déplaise à certains)<br>
+                        Pour ce faire vous pouvez remplir le champs de recherche avec : <br>
+                    <ul>
+                        <li>la rue</li>
+                        <li>la ville</li>
+                        <li>l'état</li>
+                        <li>le pays</li>
+                        <li>le code postal</li>
+                    </ul>
+                    <div class="alert alert-warning">
+                        Attention, plusieurs ville peuvent avoir le même code postal<br>
+                        <span class="example">Exemple :</span><br>
+                        Pour le code postal 75000, je peux avoir Paris en France et Residencial Antônio Carlos Pires au Brésil<br>
+                        Dans des cas comme celui-ci, il vaut mieux renseigner l'adresse complete.
+                    </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+<br>
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

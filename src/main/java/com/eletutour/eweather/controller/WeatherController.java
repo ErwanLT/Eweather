@@ -78,6 +78,15 @@ public class WeatherController {
         return "help";
     }
 
+    @GetMapping("/v2")
+    public String indexV2(Model model) {
+
+        CoordinateForm coordinateForm = new CoordinateForm();
+        model.addAttribute(coordinateForm);
+
+        return "helpV2";
+    }
+
     @GetMapping("/home")
     public String home(Model model){
         CoordinateForm coordinateForm = new CoordinateForm();
@@ -129,19 +138,16 @@ public class WeatherController {
                 List<String> hours = new ArrayList<>();
                 List<Integer> temperatures = new ArrayList<>();
                 List<Integer> apparentTemperatures = new ArrayList<>();
-                List<Double> humidity = new ArrayList<>();
 
                 f.getHours().stream().limit(24).forEach(hourly ->{
                     hours.add(hourly.getTime()+"h");
                     temperatures.add(hourly.getTemperature());
                     apparentTemperatures.add(hourly.getApparentTemperature());
                 });
-                humidity.add(f.getCurrently().getHumidity());
 
                 model.addAttribute("hoursChart", hours);
                 model.addAttribute("temperatureChart", temperatures);
                 model.addAttribute("apparentTemperatureChart", apparentTemperatures);
-                model.addAttribute("humidity", humidity);
 
                 model.addAttribute("forecast", f);
             } catch (LocationIQException e) {
@@ -150,5 +156,50 @@ public class WeatherController {
         }
 
         return "home";
+    }
+
+    @PostMapping("/getWeatherV2")
+    @ApiOperation(value = "get the weather for the given location",
+            response = String.class,
+            produces = "text/html")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "the weather for the given location", response = Forecast.class),
+            @ApiResponse(code = 404, message = "Page eaten by a black hole"),
+            @ApiResponse(code = 500, message = "Congratulation, you broke the internet")})
+    public String getWeatherV2(@ApiParam(value = "A form with the wanted location", required = true) @ModelAttribute("coordinateForm")CoordinateForm coordinateForm, Model model){
+
+        CoordinateForm form = new CoordinateForm();
+        model.addAttribute(form);
+
+        if(StringUtils.isEmpty(coordinateForm.getLocation())){
+            //should never happened because it's a required field
+            MessageHelper.addDangerAttribute(model, "The location field is null or Empty");
+        } else {
+            ForecastResponse forecast = null;
+            try {
+                forecast = weatherService.getForecast(coordinateForm.getLocation());
+
+                if ("Fake forecast".equals(forecast.getLocation())){
+                    MessageHelper.addWarningAttribute(model, "This is a fake response because something bad happened.");
+                }
+
+                Forecast f = responseToForm.darkskyResponseToForm(forecast);
+
+                List<Double> humidity = new ArrayList<>();
+                List<Integer> uvIndex = new ArrayList<>();
+
+                humidity.add(f.getCurrently().getHumidity());
+                uvIndex.add(f.getCurrently().getUvIndex());
+
+                model.addAttribute("humidity", humidity);
+                model.addAttribute("uvIndex", uvIndex);
+
+                model.addAttribute("forecast", f);
+            } catch (LocationIQException e) {
+                MessageHelper.addDangerAttribute(model, e.getMessage());
+            }
+        }
+
+        return "homeV2";
     }
 }
