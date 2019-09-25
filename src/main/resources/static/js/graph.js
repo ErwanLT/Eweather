@@ -157,17 +157,17 @@ $(document).ready(function(){
         },
 
         series: [{
-            name: 'humidité',
+            name: 'uvIndex',
             data: uvIndex,
             dataLabels: {
                 format:
                     '<div style="text-align:center">' +
                     '<span style="font-size:25px">{y}</span><br/>' +
-                    '<span style="font-size:12px;opacity:0.4">%</span>' +
+                    '<span style="font-size:12px;opacity:0.4"></span>' +
                     '</div>'
             },
             tooltip: {
-                valueSuffix: '%'
+                valueSuffix: ''
             }
         }]
 
