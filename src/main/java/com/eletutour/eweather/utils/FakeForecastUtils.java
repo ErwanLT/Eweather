@@ -48,7 +48,7 @@ public class FakeForecastUtils {
                     "    \"windGust\": 37.58,\n" +
                     "    \"windBearing\": 250,\n" +
                     "    \"cloudCover\": 0.94,\n" +
-                    "    \"uvIndex\": 0,\n" +
+                    "    \"uvIndex\": 6,\n" +
                     "    \"visibility\": 6.53,\n" +
                     "    \"ozone\": 330.68\n" +
                     "  },\n" +
@@ -1034,7 +1034,7 @@ public class FakeForecastUtils {
                     "        \"icon\": \"wind\",\n" +
                     "        \"sunriseTime\": 1552629942,\n" +
                     "        \"sunsetTime\": 1552672565,\n" +
-                    "        \"moonPhase\": 0.29,\n" +
+                    "        \"moonPhase\": 0,\n" +
                     "        \"precipIntensity\": 0.005,\n" +
                     "        \"precipIntensityMax\": 0.0198,\n" +
                     "        \"precipIntensityMaxTime\": 1552608000,\n" +
@@ -1075,7 +1075,7 @@ public class FakeForecastUtils {
                     "        \"icon\": \"wind\",\n" +
                     "        \"sunriseTime\": 1552716216,\n" +
                     "        \"sunsetTime\": 1552759056,\n" +
-                    "        \"moonPhase\": 0.33,\n" +
+                    "        \"moonPhase\": 0.20,\n" +
                     "        \"precipIntensity\": 0.0008,\n" +
                     "        \"precipIntensityMax\": 0.0032,\n" +
                     "        \"precipIntensityMaxTime\": 1552694400,\n" +
@@ -1157,7 +1157,7 @@ public class FakeForecastUtils {
                     "        \"icon\": \"clear-day\",\n" +
                     "        \"sunriseTime\": 1552888763,\n" +
                     "        \"sunsetTime\": 1552932037,\n" +
-                    "        \"moonPhase\": 0.41,\n" +
+                    "        \"moonPhase\": 0.5,\n" +
                     "        \"precipIntensity\": 0.0001,\n" +
                     "        \"precipIntensityMax\": 0.0006,\n" +
                     "        \"precipIntensityMaxTime\": 1552888800,\n" +
@@ -1198,7 +1198,7 @@ public class FakeForecastUtils {
                     "        \"icon\": \"clear-day\",\n" +
                     "        \"sunriseTime\": 1552975036,\n" +
                     "        \"sunsetTime\": 1553018527,\n" +
-                    "        \"moonPhase\": 0.44,\n" +
+                    "        \"moonPhase\": 0.7,\n" +
                     "        \"precipIntensity\": 0,\n" +
                     "        \"precipIntensityMax\": 0,\n" +
                     "        \"precipProbability\": 0,\n" +
@@ -1237,7 +1237,7 @@ public class FakeForecastUtils {
                     "        \"icon\": \"clear-day\",\n" +
                     "        \"sunriseTime\": 1553061309,\n" +
                     "        \"sunsetTime\": 1553105017,\n" +
-                    "        \"moonPhase\": 0.48,\n" +
+                    "        \"moonPhase\": 0.75,\n" +
                     "        \"precipIntensity\": 0,\n" +
                     "        \"precipIntensityMax\": 0.0002,\n" +
                     "        \"precipIntensityMaxTime\": 1553072400,\n" +
@@ -1277,7 +1277,7 @@ public class FakeForecastUtils {
                     "        \"icon\": \"clear-day\",\n" +
                     "        \"sunriseTime\": 1553147581,\n" +
                     "        \"sunsetTime\": 1553191507,\n" +
-                    "        \"moonPhase\": 0.52,\n" +
+                    "        \"moonPhase\": 0.80,\n" +
                     "        \"precipIntensity\": 0,\n" +
                     "        \"precipIntensityMax\": 0.0002,\n" +
                     "        \"precipIntensityMaxTime\": 1553158800,\n" +

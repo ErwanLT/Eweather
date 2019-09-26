@@ -17,8 +17,26 @@
         </div>
 
         <div th:if="${forecast}">
+            <div th:if="${not #lists.isEmpty(forecast.getAlerts())}">
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> <a th:href="${forecast.getAlerts().get(0).uri}" target="_blank"><span class="bold-span" th:text="${forecast.getAlerts().get(0).title}"></span></a>
+                    Du <comment th:text="${forecast.getAlerts().get(0).time}" /> à <comment th:text="${forecast.getAlerts().get(0).expire}" />
+                </div>
+            </div>
+            <br>
+            <div th:replace="fragments/currentlyV2 :: currentlyV2"/>
+            <br>
             <div th:replace="fragments/currentInfoV2 :: currentInfoV2"/>
             <br>
+            <div th:replace="fragments/week :: week"/>
+            <br>
+            <div class="row">
+                <div class="col-md-1">
+                    <a href="https://darksky.net/poweredby/">
+                        <img src="/img/poweredby.png" style="height: 3rem;">
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </main>

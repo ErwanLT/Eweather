@@ -193,6 +193,7 @@ public class WeatherController {
 
                 model.addAttribute("humidity", humidity);
                 model.addAttribute("uvIndex", uvIndex);
+                model.addAttribute("currentTemp", f.getCurrently().getTemperature());
 
                 model.addAttribute("forecast", f);
             } catch (LocationIQException e) {
