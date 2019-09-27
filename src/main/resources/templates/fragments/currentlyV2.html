@@ -26,9 +26,9 @@
                         <script th:inline="javascript">
                             /*<![CDATA[*/
                             var width = 80,
-                                height = 180,
-                                maxTemp = 20.2,
-                                minTemp = 15.4,
+                                height = 225,
+                                maxTemp = /*[[${forecast.week[0].temperatureMax}]]*/,
+                                minTemp = /*[[${forecast.week[0].temperatureMin}]]*/,
                                 currentTemp = /*[[${currentTemp}]]*/;
 
                             var bottomY = height - 5,
@@ -123,7 +123,7 @@
 
 
                             // Scale step size
-                            var step = 5;
+                            var step = 2;
 
                             // Determine a suitable range of the temperature scale
                             var domain = [
