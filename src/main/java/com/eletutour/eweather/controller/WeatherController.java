@@ -72,10 +72,11 @@ public class WeatherController {
     @GetMapping("/")
     public String index(Model model) {
 
-        CoordinateForm coordinateForm = new CoordinateForm();
+        /*CoordinateForm coordinateForm = new CoordinateForm();
         model.addAttribute(coordinateForm);
 
-        return "help";
+        return "help";*/
+        return indexV2(model);
     }
 
     @GetMapping("/v2")
@@ -118,7 +119,7 @@ public class WeatherController {
             @ApiResponse(code = 500, message = "Congratulation, you broke the internet")})
     public String getWeather(@ApiParam(value = "A form with the wanted location", required = true) @ModelAttribute("coordinateForm")CoordinateForm coordinateForm, Model model){
 
-        CoordinateForm form = new CoordinateForm();
+        /*CoordinateForm form = new CoordinateForm();
         model.addAttribute(form);
 
         if(StringUtils.isEmpty(coordinateForm.getLocation())){
@@ -155,7 +156,8 @@ public class WeatherController {
             }
         }
 
-        return "home";
+        return "home";*/
+        return getWeatherV2(coordinateForm, model);
     }
 
     @PostMapping("/getWeatherV2")
