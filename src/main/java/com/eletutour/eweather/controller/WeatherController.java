@@ -72,11 +72,10 @@ public class WeatherController {
     @GetMapping("/")
     public String index(Model model) {
 
-        /*CoordinateForm coordinateForm = new CoordinateForm();
+        CoordinateForm coordinateForm = new CoordinateForm();
         model.addAttribute(coordinateForm);
 
-        return "help";*/
-        return indexV2(model);
+        return "help";
     }
 
     @GetMapping("/v2")
@@ -119,7 +118,7 @@ public class WeatherController {
             @ApiResponse(code = 500, message = "Congratulation, you broke the internet")})
     public String getWeather(@ApiParam(value = "A form with the wanted location", required = true) @ModelAttribute("coordinateForm")CoordinateForm coordinateForm, Model model){
 
-        /*CoordinateForm form = new CoordinateForm();
+        CoordinateForm form = new CoordinateForm();
         model.addAttribute(form);
 
         if(StringUtils.isEmpty(coordinateForm.getLocation())){
@@ -156,8 +155,7 @@ public class WeatherController {
             }
         }
 
-        return "home";*/
-        return getWeatherV2(coordinateForm, model);
+        return "home";
     }
 
     @PostMapping("/getWeatherV2")
@@ -187,10 +185,12 @@ public class WeatherController {
 
                 Forecast f = responseToForm.darkskyResponseToForm(forecast);
 
-                List<Double> humidity = new ArrayList<>();
+                List<Integer> humidity = new ArrayList<>();
                 List<Integer> uvIndex = new ArrayList<>();
 
-                humidity.add(f.getCurrently().getHumidity());
+                int h = Double.valueOf(f.getCurrently().getHumidity()).intValue();
+
+                humidity.add(h);
                 uvIndex.add(f.getCurrently().getUvIndex());
 
                 model.addAttribute("humidity", humidity);

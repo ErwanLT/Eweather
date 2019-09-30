@@ -42,7 +42,7 @@ public class FakeForecastUtils {
                     "    \"temperature\": 52.69,\n" +
                     "    \"apparentTemperature\": 52.69,\n" +
                     "    \"dewPoint\": 47.9,\n" +
-                    "    \"humidity\": 0.84,\n" +
+                    "    \"humidity\": 0.8474,\n" +
                     "    \"pressure\": 1013.27,\n" +
                     "    \"windSpeed\": 18.19,\n" +
                     "    \"windGust\": 37.58,\n" +
