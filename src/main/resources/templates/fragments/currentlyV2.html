@@ -34,13 +34,12 @@
                         <table class="table">
                             <tr>
                                 <td class="td-width-lg">
-                                    <span class="bold-span">Ressentie:</span><comment th:text="${forecast.currently.apparentTemperature}"/>°C
-                                </td>
-                                <td class="td-width-lg">
-                                    <span class="bold-span">Minimal:</span><comment th:text="${forecast.week[0].temperatureMin}" />°C
-                                </td>
-                                <td class="td-width-lg">
-                                    <span class="bold-span">Maximal:</span><comment th:text="${forecast.week[0].temperatureMax}"/>°C
+                                    <div id="lines" style="width: 500px; height: 300px; max-width: 500px; max-height: 300px"></div>
+                                    <script th:inline="javascript">
+                                        var heures = [[${hoursChart}]];
+                                        var temp = [[${temperatureChart}]];
+                                        var apparentTemp = [[${apparentTemperatureChart}]];
+                                    </script>
                                 </td>
                             </tr>
                         </table>

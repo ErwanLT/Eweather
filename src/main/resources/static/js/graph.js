@@ -372,4 +372,41 @@ $(document).ready(function(){
         .style("stroke", tubeBorderColor)
         .style("shape-rendering", "crispEdges")
         .style("stroke-width", "1px");
+
+    Highcharts.chart('lines', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Evolution de la temperature'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: heures
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Temperature',
+            data: temp,
+            color: 'red'
+        }, {
+            name: 'Ressentie',
+            data: apparentTemp,
+            color: 'blue'
+        }]
+    });
 });
