@@ -26,7 +26,32 @@
                 <div style="text-align: center">
                     <comment th:text="${forecast.currently.windSpeed}" />m/s
                 </div>
-
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="owl-carousel">
+                <div th:each="hour : ${forecast.hours}">
+                    <div class="card">
+                        <div class="card-body">
+                            <comment th:text="${hour.time}"/>h
+                            <table>
+                                <tr>
+                                    <td></td><td><img th:src="@{'./img/weatherIcon/' + ${hour.icon} + '.png'}" class="img-medium"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Temperature :</td><td class="hour-temperature"><comment th:text="${hour.temperature}" />°C</td>
+                                </tr>
+                                <tr>
+                                    <td>Ressentie :</td><td class="hour-apparent-temperature"><comment th:text="${hour.apparentTemperature}"/>°C</td>
+                                </tr>
+                                <tr>
+                                    <td>Chance de précipitation :</td><td class="hour-precip-prob"><comment th:text="${hour.precipProbability}"/>%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                </div>
             </div>
         </div>
     </div>

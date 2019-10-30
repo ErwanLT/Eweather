@@ -7,9 +7,9 @@
 <body>
 <div th:fragment="currentlyV2">
     <div class="row">
-        <div class="col-md-2 mb-4">
+        <div class="col-md-1 mb-4">
         </div>
-        <div class="col-md-8 mb_4">
+        <div class="col-md-9 mb_4">
             <table class="table">
                 <tr style="background-color: #e8e8e8">
                     <td colspan="100%" align="center">
@@ -34,7 +34,7 @@
                         <table class="table">
                             <tr>
                                 <td class="td-width-lg">
-                                    <div id="lines" style="width: 500px; height: 300px; max-width: 500px; max-height: 300px"></div>
+                                    <div id="lines" style="width: 700px; height: 300px; max-width: 500px; max-height: 300px"></div>
                                     <script th:inline="javascript">
                                         var heures = [[${hoursChart}]];
                                         var temp = [[${temperatureChart}]];
@@ -47,7 +47,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-md-2 mb-4">
+        <div class="col-md-1 mb-4">
         </div>
     </div>
 </div>
