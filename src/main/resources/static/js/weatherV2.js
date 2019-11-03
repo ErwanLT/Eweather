@@ -3,6 +3,10 @@ $(document).ready(function(){
         items:1,
         loop:true,
         margin:10,
+        autoWidth:true,
+        autoplay:true,
+        autoplayTimeout:3000,
+        autoplayHoverPause:true,
         nav:true,
         responsive:{
             0:{
