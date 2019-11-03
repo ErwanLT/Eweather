@@ -8,17 +8,17 @@
 <div th:fragment="currentInfoV2">
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="outer">
                 <div id="container-humidity" class="chart-container"></div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="outer">
                 <div id="container-uv" class="chart-container"></div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="outer">
                 <div style="margin: 25% 25% 0 25%;">
                     <img src="/img/weatherIcon/windy.png" class="img-medium">
@@ -28,12 +28,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+    </div>
+    <div class="row">
+        <div class="col-md-1 mb-4"></div>
+        <div class="col-md-10 mb-4">
             <div class="owl-carousel">
                 <div th:each="hour : ${forecast.hours}">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-header">
                             <comment th:text="${hour.time}"/>h
+                        </div>
+                        <div class="card-body">
                             <table>
                                 <tr>
                                     <td></td><td><img th:src="@{'./img/weatherIcon/' + ${hour.icon} + '.png'}" class="img-medium"/></td>
@@ -54,9 +59,8 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-1 mb-4"></div>
     </div>
-
-
 
     <script type="text/javascript" th:inline="javascript">
         var humidity = [[${humidity}]];
