@@ -210,6 +210,9 @@ public class WeatherController {
                 model.addAttribute("uvIndex", uvIndex);
                 model.addAttribute("currentTemp", f.getCurrently().getTemperature());
 
+                getHoursCarousel(model, f);
+
+
                 model.addAttribute("forecast", f);
             } catch (LocationIQException e) {
                 MessageHelper.addDangerAttribute(model, e.getMessage());
@@ -217,5 +220,11 @@ public class WeatherController {
         }
 
         return "homeV2";
+    }
+
+    private void getHoursCarousel(Model model, Forecast f) {
+        for (int i=0; i<=8; i++){
+            model.addAttribute("hours"+String.valueOf(i), f.getHours().get(i));
+        }
     }
 }
