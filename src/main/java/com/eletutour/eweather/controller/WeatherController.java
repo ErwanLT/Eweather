@@ -108,6 +108,9 @@ public class WeatherController {
         return index(model);
     }
 
+    @GetMapping("/helpV2")
+    public String helpV2(Model model){ return indexV2(model); }
+
     @PostMapping("/getWeather")
     @ApiOperation(value = "get the weather for the given location",
                   response = String.class,
