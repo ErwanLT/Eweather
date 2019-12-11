@@ -109,7 +109,12 @@ public class WeatherController {
     }
 
     @GetMapping("/helpV2")
-    public String helpV2(Model model){ return indexV2(model); }
+    public String helpV2(Model model){
+        CoordinateForm form = new CoordinateForm();
+        model.addAttribute(form);
+
+        return "indications";
+    }
 
     @PostMapping("/getWeather")
     @ApiOperation(value = "get the weather for the given location",
