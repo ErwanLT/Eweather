@@ -1,12 +1,13 @@
 $(document).ready(function(){
     $('.owl-carousel').owlCarousel({
-        items:3,
+        items:1,
         loop:true,
         margin:10,
         autoWidth:true,
         autoplay:true,
         autoplayTimeout:3000,
         autoplayHoverPause:true,
+        nav:true,
         responsive:{
             0:{
                 items:1
@@ -18,7 +19,5 @@ $(document).ready(function(){
                 items:5
             }
         }
-    });
-
-    $('[data-toggle="tooltip"]').tooltip();
+    })
 });

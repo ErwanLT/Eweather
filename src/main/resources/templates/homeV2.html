@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <div th:replace="fragments/headerV2 :: header-css-v2"/>
+</head>
+<body>
+<div th:replace="fragments/headerV2 :: header-v2"/>
+<main>
+    <div class="container-fluid">
+        <div id="alertDiv">
+            <th:block th:if="${message != null}">
+                <!-- /* The message code is returned from the @Controller */ -->
+                <div th:replace="fragments/components :: alert"/>
+            </th:block>
+        </div>
+
+        <div th:if="${forecast}">
+            <div th:if="${not #lists.isEmpty(forecast.getAlerts())}">
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> <a th:href="${forecast.getAlerts().get(0).uri}" target="_blank"><span class="bold-span" th:text="${forecast.getAlerts().get(0).title}"></span></a>
+                    Du <comment th:text="${forecast.getAlerts().get(0).time}" /> à <comment th:text="${forecast.getAlerts().get(0).expire}" />
+                </div>
+            </div>
+            <br>
+            <div th:replace="fragments/currentlyV2 :: currentlyV2"/>
+            <br>
+            <div th:replace="fragments/currentInfoV2 :: currentInfoV2"/>
+            <br>
+            <div th:replace="fragments/week :: week"/>
+            <br>
+            <div class="row">
+                <div class="col-md-1">
+                    <a href="https://darksky.net/poweredby/">
+                        <img src="/img/poweredby.png" style="height: 3rem;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<br>
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

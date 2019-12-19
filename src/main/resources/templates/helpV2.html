@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Help</title>
-    <div th:replace="fragments/header :: header-css"/>
+    <div th:replace="fragments/headerV2 :: header-css-v2"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header"/>
+<div th:replace="fragments/headerV2 :: header-v2"/>
 <br>
 <div class="container-fluid">
     <div class="row">
@@ -33,9 +33,6 @@
                         Pour le code postal 75000, je peux avoir Paris en France et Residencial Antônio Carlos Pires au Brésil<br>
                         Dans des cas comme celui-ci, il vaut mieux renseigner l'adresse complete.
                     </div>
-                    </p>
-                    <p>
-                        <a th:href="@{/v2}">link to the v2</a>
                     </p>
                 </div>
             </div>

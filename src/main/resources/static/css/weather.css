@@ -106,6 +106,18 @@ footer {
     text-decoration: underline;
 }
 
+.carousel-control-next-icon {
+    height:100%;
+    width:100%
+    background-image: url('https://www.materialui.co/materialIcons/navigation/chevron_right_black_144x144.png');
+}
+
+.carousel-control-previous-icon {
+    height:100%;
+    width:100%
+    background-image: url('https://www.materialui.co/materialIcons/navigation/chevron_left_black_144x144.png');
+}
+
 @media screen and (max-width: 600px) {
     .graph {
         display: none;
