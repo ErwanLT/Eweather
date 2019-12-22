@@ -42,6 +42,7 @@ public class Forecast {
 
     private String weekSummary;
     private String hourSummary;
+    private String hoursIcon;
 
     private List<Hourly> hours;
     private List<Daily> week;

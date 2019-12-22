@@ -33,6 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 @Slf4j
 public class DarkSkyService implements IDarkSkyService {
@@ -44,5 +46,11 @@ public class DarkSkyService implements IDarkSkyService {
     public String callApi(String latitude, String longitude) {
         return apiService.callApiWithUrl(Constants.getDarkSkyUrl(latitude, longitude));
 
+    }
+
+    @Override
+    public String callApi(String latitude, String longitude, Date date) {
+        Long time = date.getTime() / 1000;
+        return apiService.callApiWithUrl(Constants.getDarkSkyUrl(latitude, longitude, time));
     }
 }

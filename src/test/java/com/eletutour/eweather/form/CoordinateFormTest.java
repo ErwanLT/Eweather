@@ -31,6 +31,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -41,7 +43,7 @@ public class CoordinateFormTest extends CommonForTest {
 
     @Test
     public void coordinateFormTest(){
-        form = new CoordinateForm("Paris");
+        form = new CoordinateForm("Paris", false, new Date());
         assertThat(form.getLocation()).isEqualTo("Paris");
     }
 }

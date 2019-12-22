@@ -1,0 +1,199 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/headerV3 :: header-css-v3"/>
+</head>
+<body>
+<div th:fragment="currentlyV3">
+    <div class="row">
+        <div class="col-md-2 mb-4">
+        </div>
+        <div class="col-md-8 mb-4">
+            <div class="info">
+                <table>
+                    <tr>
+                        <td>
+                            <img th:src="@{'./img/weatherIcon/' + ${forecast.hoursIcon} + '.png'}" class="img-small"/>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <comment style="color:white; font-size: 25px;font-weight: 600; column-width: 1000px; text-align: center" colspan="3" th:text="${forecast.location}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <comment style="color:white; font-size: 20px;font-weight: 550; column-width: 1000px; text-align: center" th:text="${forecast.hourSummary}" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2 mb-4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 mb-4"></div>
+        <div class="col-md-8 mb-4">
+            <table class="table">
+                <tr>
+                    <td colspan="100%" align="left">
+                        Météo actuelle
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img th:src="@{'./img/weatherIcon/' + ${forecast.currently.icon} + '.png'}" class="img-big"/></td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td style="font-size: 25px;font-weight: 600"><comment th:text="${forecast.currently.temperature}" />°C</td>
+                                <td style="font-size: 25px;font-weight: 600; column-width: 1000px;" colspan="3"><comment th:text="${forecast.currently.summary}" /></td>
+                            </tr>
+                            <tr>
+                                <td class="td-width-lg">
+                                    <span class="bold-span">Ressentie:</span>
+                                </td>
+                                <td class="td-width-lg">
+                                    <comment th:text="${forecast.currently.apparentTemperature}"/>°C
+                                </td>
+                                <td>
+                                    <span class="bold-span">Couverture Nuageuse:</span>
+                                </td>
+                                <td>
+                                    <comment th:text="${forecast.currently.cloudCover}" />°C
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-width-lg">
+                                    <span class="bold-span">Vent:</span>
+                                </td>
+                                <td>
+                                    <comment th:text="${forecast.currently.windSpeed}"/>Km/h
+                                </td>
+                                <td class="td-width-lg">
+                                    <span class="bold-span">Pluie:</span>
+                                </td>
+                                <td>
+                                    <comment th:text="${forecast.currently.precipIntensity}" />mm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="bold-span">indice UV:</span>
+                                </td>
+                                <td>
+                                    <comment th:if="${forecast.currently.uvIndex == 0}" th:text="${forecast.currently.uvIndex}" class="uv-low"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 1}" th:text="${forecast.currently.uvIndex}" class="uv-low"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 2}" th:text="${forecast.currently.uvIndex}" class="uv-low"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 3}" th:text="${forecast.currently.uvIndex}" class="uv-moderate"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 4}" th:text="${forecast.currently.uvIndex}" class="uv-moderate"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 5}" th:text="${forecast.currently.uvIndex}" class="uv-moderate"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 6}" th:text="${forecast.currently.uvIndex}" class="uv-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 7}" th:text="${forecast.currently.uvIndex}" class="uv-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 8}" th:text="${forecast.currently.uvIndex}" class="uv-very-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 9}" th:text="${forecast.currently.uvIndex}" class="uv-very-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 10}" th:text="${forecast.currently.uvIndex}" class="uv-very-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex > 10}" th:text="${forecast.currently.uvIndex}" class="uv-extrem"/>
+
+                                    <sup>
+                                        <a href="" data-toggle="modal" data-target="#uvModal">?</a>
+                                    </sup>
+
+                                    <div class="modal fade" id="uvModal" tabindex="-1" role="dialog" aria-labelledby="uvModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Indice UV</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table">
+                                                        <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Indice UV</th>
+                                                            <th>Niveau de risque</th>
+                                                            <th>Couleur</th>
+                                                            <th>Protection(s) recommandée(s)</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>0-2</td>
+                                                            <td>Faible</td>
+                                                            <td style="background-color: #4DC7A0;"></td>
+                                                            <td>Port de lunettes de soleil en cas de journées ensoleillées.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3-5</td>
+                                                            <td>Modéré</td>
+                                                            <td style="background-color: burlywood;"></td>
+                                                            <td>Se couvrir et porter un chapeau et des lunettes de soleil.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>6-7</td>
+                                                            <td>Élevé</td>
+                                                            <td style="background-color: darkorange;"></td>
+                                                            <td>Réduire l’exposition entre 11 h et 17 h.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>8-10</td>
+                                                            <td>Très élevé</td>
+                                                            <td style="background-color: crimson;"></td>
+                                                            <td>Sans protection, la peau sera endommagée et peut brûler.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>11+</td>
+                                                            <td>Extrême</td>
+                                                            <td style="background-color: blueviolet;"></td>
+                                                            <td>La peau non protégée sera endommagée et peut brûler en quelques minutes.</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <sub><a href="https://fr.wikipedia.org/wiki/Indice_UV" target="_blank">source wikipedia</a></sub>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="bold-span">Visibilité:</span>
+                                </td>
+                                <td>
+                                    <comment th:text="${forecast.currently.visibility}" />+km
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="bold-span">Pression: </span>
+                                </td>
+                                <td>
+                                    <comment th:text="${forecast.currently.pressure}" />hPa
+                                </td>
+                                <td>
+                                    <span class="bold-span">Humidité: </span>
+                                </td>
+                                <td>
+                                    <comment th:text="${forecast.currently.humidity}"/>%
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-2 mb-4"></div>
+    </div>
+</div>
+</body>
+</html>

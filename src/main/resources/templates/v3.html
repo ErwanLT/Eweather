@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <div th:replace="fragments/headerV2 :: header-css-v2"/>
+</head>
+<body>
+<div th:replace="fragments/headerV3 :: header-v3"/>
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form method="post" th:action="@{/getWeatherV3}" th:object="${coordinateForm}">
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input id="location" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" th:field="*{location}" required="required">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="timeMachine" th:field="*{timeMachine}" onchange="checkStatus()">
+                        <label for="timeMAchine">Machine à voyager dans le temps</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" th:field="*{date}" disabled="disabled">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</main>
+<br>
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

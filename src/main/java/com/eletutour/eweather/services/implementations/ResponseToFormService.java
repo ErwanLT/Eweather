@@ -63,6 +63,7 @@ public class ResponseToFormService implements IResponseToFormService {
 
         f.setWeekSummary(responseForecast.getDaily().getSummary());
         f.setHourSummary(responseForecast.getHourly().getSummary());
+        f.setHoursIcon(responseForecast.getHourly().getIcon());
         f.setWeek(getWeekFromAPIResponse(responseForecast.getDaily()));
         f.setHours(getHoursFromApiResponse(responseForecast.getHourly()));
         f.setAlerts(getAlertsFromApiResponse(responseForecast.getAlerts()));
@@ -116,7 +117,9 @@ public class ResponseToFormService implements IResponseToFormService {
                 .withWindSpeed(responseForecastCurrently.getWindSpeed())
                 .withUVIndex((int)responseForecastCurrently.getUvIndex())
                 .withVisibility(responseForecastCurrently.getVisibility())
-                .withOzone(responseForecastCurrently.getOzone());
+                .withOzone(responseForecastCurrently.getOzone())
+                .withCloudCover(responseForecastCurrently.getCloudCover())
+                .withPrecipIntensity(responseForecastCurrently.getPrecipIntensity());
     }
 
     private List<Daily> getWeekFromAPIResponse(com.eletutour.eweather.datapoint.Daily daily) {

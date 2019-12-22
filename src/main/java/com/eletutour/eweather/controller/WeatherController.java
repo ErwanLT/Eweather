@@ -87,6 +87,15 @@ public class WeatherController {
         return "helpV2";
     }
 
+    @GetMapping("/v3")
+    public String indexV3(Model model) {
+
+        CoordinateForm coordinateForm = new CoordinateForm();
+        model.addAttribute(coordinateForm);
+
+        return "v3";
+    }
+
     @GetMapping("/home")
     public String home(Model model){
         CoordinateForm coordinateForm = new CoordinateForm();
@@ -114,6 +123,11 @@ public class WeatherController {
         model.addAttribute(form);
 
         return "indications";
+    }
+
+    @GetMapping("/helpV3")
+    public String helpV3(Model model){
+        return helpV2(model);
     }
 
     @PostMapping("/getWeather")
@@ -228,6 +242,53 @@ public class WeatherController {
         }
 
         return "homeV2";
+    }
+
+    @PostMapping("/getWeatherV3")
+    @ApiOperation(value = "get the weather for the given location",
+            response = String.class,
+            produces = "text/html")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "the weather for the given location", response = Forecast.class),
+            @ApiResponse(code = 404, message = "Page eaten by a black hole"),
+            @ApiResponse(code = 500, message = "Congratulation, you broke the internet")})
+    public String getWeatherV3(@ApiParam(value = "A form with the wanted location", required = true) @ModelAttribute("coordinateForm")CoordinateForm coordinateForm, Model model){
+
+        CoordinateForm form = new CoordinateForm();
+        model.addAttribute(form);
+
+        if(StringUtils.isEmpty(coordinateForm.getLocation())){
+            //should never happened because it's a required field
+            MessageHelper.addDangerAttribute(model, "The location field is null or Empty");
+        } else {
+            ForecastResponse forecast = null;
+
+            if( coordinateForm.isTimeMachine() && coordinateForm.getDate() != null ){
+                try {
+                    forecast = weatherService.getForecast(coordinateForm.getLocation(), coordinateForm.getDate());
+
+                    if ("Fake forecast".equals(forecast.getLocation())){
+                        MessageHelper.addWarningAttribute(model, "This is a fake response because something bad happened.");
+                    }
+                } catch (LocationIQException e) {
+                    MessageHelper.addDangerAttribute(model, e.getMessage());
+                }
+            } else {
+                try {
+                    forecast = weatherService.getForecast(coordinateForm.getLocation());
+
+                    if ("Fake forecast".equals(forecast.getLocation())){
+                        MessageHelper.addWarningAttribute(model, "This is a fake response because something bad happened.");
+                    }
+                } catch (LocationIQException e) {
+                    MessageHelper.addDangerAttribute(model, e.getMessage());
+                }
+            }
+            Forecast f = responseToForm.darkskyResponseToForm(forecast);
+            model.addAttribute("forecast", f);
+        }
+
+        return "homeV3";
     }
 
     private void getHoursCarousel(Model model, Forecast f) {

@@ -46,6 +46,8 @@ public class Currently {
     private int uvIndex;
     private double visibility;
     private double ozone;
+    private double cloudCover;
+    private double precipIntensity;
 
 
     public Currently withTime(String time){
@@ -105,6 +107,16 @@ public class Currently {
 
     public Currently withOzone(double ozone){
         this.setOzone(ozone);
+        return this;
+    }
+
+    public Currently withCloudCover(double cloudCover){
+        this.setCloudCover(cloudCover);
+        return this;
+    }
+
+    public Currently withPrecipIntensity(double precipIntensity){
+        this.setPrecipIntensity(precipIntensity);
         return this;
     }
 }

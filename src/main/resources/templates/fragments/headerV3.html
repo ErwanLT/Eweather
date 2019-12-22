@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:fragment="header-css-v3">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link href="./img/favicon.ico" rel="icon" type="image/x-icon" />
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="./css/fontawesome/all.css">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="./css/bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="./css/bootstrap/bootstrap-grid.css">
+        <link rel="stylesheet" href="./css/bootstrap/bootstrap-reboot.css">
+        <!-- owl-carousel -->
+        <link rel="stylesheet" href="./css/owlcarousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="./css/owlcarousel/owl.theme.default.min.css">
+        <!-- font awesome css -->
+        <link rel="stylesheet" href="./css/fontawesome/all.css" />
+        <!-- custom css-->
+        <link rel="stylesheet" href="./css/weather.css" />
+
+        <link rel="stylesheet" href="./css/humidityChart.css" />
+
+        <!-- Optional JavaScript -->
+        <!-- JQuery -->
+        <script src="./js/jquery.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script src="./js/popper.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="./js/bootstrap/bootstrap.js"></script>
+        <script src="./js/bootstrap/bootstrap.bundle.js"></script>
+        <!-- font awesome JavaScript-->
+        <script src="./js/fontawesome/all.js"></script>
+        <!-- owl carousel -->
+        <script src="./js/owlcarousel/owl.carousel.js"></script>
+        <!-- Highchats.js -->
+        <script src="./js/highcharts/highcharts.js"></script>
+        <script src="./js/highcharts/highcharts-more.js"></script>
+        <script src="./js/highcharts/solid-gauge.js"></script>
+        <script src="./js/highcharts/exporting.js"></script>
+        <script src="./js/highcharts/export-data.js"></script>
+
+        <script src="./js/d3.js"></script>
+
+        <script src="./js/graph.js"></script>
+
+        <script src="./js/weatherV2.js"></script>
+    </div>
+</head>
+<body>
+<div th:fragment="header-v3">
+    <header>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- Additional container -->
+            <div class="container-fluid">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" th:href="@{/v3}">EWeather v3</a>
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="basicExampleNav">
+                    <form class="form-inline" method="post" th:action="@{/getWeatherV3}" th:object="${coordinateForm}">
+                        <div class="md-form my-0">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" th:field="*{location}" required="required">
+                        </div>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    <ul class="nav navbar-nav ml-auto">
+                        <li><a th:href="@{/helpV2}"><i class="far fa-question-circle"></i>Help</a></li>
+                    </ul>
+                </div>
+                <!-- Collapsible content -->
+            </div>
+            <!-- Additional container -->
+        </nav>
+        <!--/.Navbar-->
+    </header>
+</div>
+
+</body>
+</html>
