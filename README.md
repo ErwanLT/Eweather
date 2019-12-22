@@ -5,7 +5,7 @@
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![star this repo](http://githubbadges.com/star.svg?user=ErwanLT&repo=Eweather&style=flat)](https://github.com/ErwanLT/Eweather)
 [![fork this repo](http://githubbadges.com/fork.svg?user=ErwanLT&repo=Eweather&style=flat)](https://github.com/ErwanLT/Eweather/fork)
-# EWeather - 2.0.0-SNAPSHOT
+# EWeather - 3.0.0-SNAPSHOT
 A simple web application using spring-boot to call the DarkSky Api and dispatch the result in a beautiful (all is relative) web page 
 
 ## Environment
