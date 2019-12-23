@@ -43,6 +43,16 @@ public class Daily {
     private double moonPhase;
     private int temperatureMin;
     private int temperatureMax;
+    private int dewPoint;
+    private double humidity;
+    private double pressure;
+    private double windSpeed;
+    private int uvIndex;
+    private double visibility;
+    private double ozone;
+    private double cloudCover;
+    private double precipIntensity;
+    private double precipProbability;
 
     public Daily withId(int id){
         this.setId(id);
@@ -86,6 +96,56 @@ public class Daily {
 
     public Daily withMoonPhase(double moonPhase){
         this.setMoonPhase(moonPhase);
+        return this;
+    }
+    
+    public Daily withDewPoint(int dewPoint){
+        this.dewPoint = dewPoint;
+        return this;
+    }
+
+    public Daily withHumidity(double humidity){
+        this.setHumidity(humidity*100);
+        return this;
+    }
+
+    public Daily withPressure(double pressure){
+        this.setPressure(pressure);
+        return this;
+    }
+
+    public Daily withWindSpeed(double windSpeed){
+        this.setWindSpeed(windSpeed);
+        return this;
+    }
+
+    public Daily withUVIndex(int uvIndex){
+        this.setUvIndex(uvIndex);
+        return this;
+    }
+
+    public Daily withVisibility(double visibility){
+        this.setVisibility(visibility);
+        return this;
+    }
+
+    public Daily withOzone(double ozone){
+        this.setOzone(ozone);
+        return this;
+    }
+
+    public Daily withCloudCover(double cloudCover){
+        this.setCloudCover(cloudCover*100);
+        return this;
+    }
+
+    public Daily withPrecipIntensity(double precipIntensity){
+        this.setPrecipIntensity(precipIntensity);
+        return this;
+    }
+
+    public Daily withPrecipProbability(double precipProbability){
+        this.setPrecipProbability(precipProbability);
         return this;
     }
 }

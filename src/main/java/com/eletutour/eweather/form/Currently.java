@@ -111,7 +111,7 @@ public class Currently {
     }
 
     public Currently withCloudCover(double cloudCover){
-        this.setCloudCover(cloudCover);
+        this.setCloudCover(cloudCover*100);
         return this;
     }
 

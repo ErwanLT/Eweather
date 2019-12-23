@@ -1,0 +1,223 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/headerV3 :: header-css-v3"/>
+</head>
+<body>
+<div th:fragment="weekV3">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <span class="bold-span"><comment th:text="${forecast.weekSummary}" /></span>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div th:each="day : ${forecast.week}">
+                <div class="card">
+                    <div class="card-header">
+                        <img th:src="@{'./img/weatherIcon/' + ${day.icon} + '.png'}" class="img-small"/>
+                        <a data-toggle="collapse" th:href="'#day'+${day.id}"><comment th:text="${day.time}"/></span></a>
+                    </div>
+                    <div class="panel-collapse collapse" th:id="'day' + ${day.id}">
+                        <div class="card-body">
+                            <table class="table">
+                                <tr>
+                                    <td colspan="100%" align="left">
+                                        <comment style="font-size: 15px;font-weight: 600" th:text="${day.summary}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img th:src="@{'./img/weatherIcon/' + ${day.icon} + '.png'}" class="img-big"/></td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <span class="bold-span">Minimal:</span>
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.temperatureMin}" />°C
+                                                </td>
+                                                <td>
+                                                    <span class="bold-span">Maximal:</span>
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.temperatureMax}"/>°C
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img style="width:30px; height:30px" th:src="@{'./img/unitIcon/sunrise.png'}">
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.sunriseTime}" />
+                                                </td>
+                                                <td>
+                                                    <img style="width:30px; height:30px" th:src="@{'./img/unitIcon/sunset.png'}">
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.sunsetTime}" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span class="bold-span">Couverture Nuageuse:</span>
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.cloudCover}" />%
+                                                </td>
+                                                <td>
+                                                    <span class="bold-span">Phase lunaire:</span>
+                                                </td>
+                                                <td>
+                                                    <comment th:if="${day.moonPhase == 0}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon1.png'}"></comment>
+                                                    <comment th:if="${day.moonPhase > 0 and day.moonPhase < 0.25}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon2.png'}"></comment>
+                                                    <comment th:if="${day.moonPhase == 0.25}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon3.png'}"></comment>
+                                                    <comment th:if="${day.moonPhase > 0.25 and day.moonPhase < 0.5}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon4.png'}"></comment>
+                                                    <comment th:if="${day.moonPhase == 0.5}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon5.png'}"></comment>
+                                                    <comment th:if="${day.moonPhase > 0.5 and day.moonPhase < 0.75}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon6.png'}"></comment>
+                                                    <comment th:if="${day.moonPhase == 0.75}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon7.png'}"></comment>
+                                                    <comment th:if="${day.moonPhase > 0.75}"><img style="width:30px; height:30px" th:src="@{'./img/moonPhase/moon8.png'}"></comment>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="td-width-lg">
+                                                    <span class="bold-span">Vent:</span>
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.windSpeed}"/>Km/h
+                                                </td>
+                                                <td class="td-width-lg">
+                                                    <span class="bold-span">Pluie:</span>
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.precipIntensity}" />mm
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span class="bold-span">indice UV:</span>
+                                                </td>
+                                                <td>
+                                                    <comment th:if="${day.uvIndex == 0}" th:text="${day.uvIndex}" class="uv-low"/>
+                                                    <comment th:if="${day.uvIndex == 1}" th:text="${day.uvIndex}" class="uv-low"/>
+                                                    <comment th:if="${day.uvIndex == 2}" th:text="${day.uvIndex}" class="uv-low"/>
+                                                    <comment th:if="${day.uvIndex == 3}" th:text="${day.uvIndex}" class="uv-moderate"/>
+                                                    <comment th:if="${day.uvIndex == 4}" th:text="${day.uvIndex}" class="uv-moderate"/>
+                                                    <comment th:if="${day.uvIndex == 5}" th:text="${day.uvIndex}" class="uv-moderate"/>
+                                                    <comment th:if="${day.uvIndex == 6}" th:text="${day.uvIndex}" class="uv-hight"/>
+                                                    <comment th:if="${day.uvIndex == 7}" th:text="${day.uvIndex}" class="uv-hight"/>
+                                                    <comment th:if="${day.uvIndex == 8}" th:text="${day.uvIndex}" class="uv-very-hight"/>
+                                                    <comment th:if="${day.uvIndex == 9}" th:text="${day.uvIndex}" class="uv-very-hight"/>
+                                                    <comment th:if="${day.uvIndex == 10}" th:text="${day.uvIndex}" class="uv-very-hight"/>
+                                                    <comment th:if="${day.uvIndex > 10}" th:text="${day.uvIndex}" class="uv-extrem"/>
+
+                                                    <sup>
+                                                        <a href="" data-toggle="modal" data-target="#uvModal">?</a>
+                                                    </sup>
+
+                                                    <div class="modal fade" id="uvModal" tabindex="-1" role="dialog" aria-labelledby="uvModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Indice UV</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <table class="table">
+                                                                        <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th>Indice UV</th>
+                                                                            <th>Niveau de risque</th>
+                                                                            <th>Couleur</th>
+                                                                            <th>Protection(s) recommandée(s)</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>0-2</td>
+                                                                            <td>Faible</td>
+                                                                            <td style="background-color: #4DC7A0;"></td>
+                                                                            <td>Port de lunettes de soleil en cas de journées ensoleillées.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>3-5</td>
+                                                                            <td>Modéré</td>
+                                                                            <td style="background-color: burlywood;"></td>
+                                                                            <td>Se couvrir et porter un chapeau et des lunettes de soleil.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>6-7</td>
+                                                                            <td>Élevé</td>
+                                                                            <td style="background-color: darkorange;"></td>
+                                                                            <td>Réduire l’exposition entre 11 h et 17 h.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>8-10</td>
+                                                                            <td>Très élevé</td>
+                                                                            <td style="background-color: crimson;"></td>
+                                                                            <td>Sans protection, la peau sera endommagée et peut brûler.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>11+</td>
+                                                                            <td>Extrême</td>
+                                                                            <td style="background-color: blueviolet;"></td>
+                                                                            <td>La peau non protégée sera endommagée et peut brûler en quelques minutes.</td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <sub><a href="https://fr.wikipedia.org/wiki/Indice_UV" target="_blank">source wikipedia</a></sub>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="bold-span">Visibilité:</span>
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.visibility}" />+km
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span class="bold-span">Pression: </span>
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.pressure}" />hPa
+                                                </td>
+                                                <td>
+                                                    <span class="bold-span">Humidité: </span>
+                                                </td>
+                                                <td>
+                                                    <comment th:text="${day.humidity}"/>%
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
+</body>
+</html>
