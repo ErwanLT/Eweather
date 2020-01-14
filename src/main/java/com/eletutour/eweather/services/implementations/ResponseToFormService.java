@@ -100,7 +100,17 @@ public class ResponseToFormService implements IResponseToFormService {
                 .withIcon(data.getIcon())
                 .withTemperature((int) Math.round(data.getTemperature()))
                 .withApparentTemperature((int) Math.round(data.getApparentTemperature()))
-                .withPrecipProbability((int) Math.round(data.getPrecipProbability())));
+                .withPrecipProbability((int) Math.round(data.getPrecipProbability()))
+                .withDewPoint((int) Math.round(data.getDewPoint()))
+                .withHumidity(data.getHumidity())
+                .withPressure(data.getPressure())
+                .withWindSpeed(data.getWindSpeed())
+                .withUVIndex((int)data.getUvIndex())
+                .withVisibility(data.getVisibility())
+                .withOzone(data.getOzone())
+                .withCloudCover(data.getCloudCover())
+                .withPrecipIntensity(data.getPrecipIntensity())
+            );
 
             id = id + 1;
         }
