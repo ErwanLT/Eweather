@@ -34,6 +34,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Hourly {
 
+    private  int id;
     private String time;
     private String summary;
     private String icon;
@@ -41,6 +42,10 @@ public class Hourly {
     private int apparentTemperature;
     private int precipProbability;
 
+    public Hourly withId(int id){
+        this.setId(id);
+        return this;
+    }
 
     public Hourly withTime(String time){
         this.setTime(time);

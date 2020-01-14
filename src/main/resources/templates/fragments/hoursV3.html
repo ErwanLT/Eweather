@@ -16,7 +16,32 @@
         </div>
     </div>
     <div class="row">
-
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div th:each="hour : ${forecast.hours}">
+                <div class="card">
+                    <div class="card-header">
+                        <img th:src="@{'./img/weatherIcon/' + ${hour.icon} + '.png'}" class="img-small"/>
+                        <a data-toggle="collapse" th:href="'#hour'+${hour.id}"><comment th:text="${hour.time}"/></span></a>
+                    </div>
+                    <div class="panel-collapse collapse" th:id="'hour' + ${hour.id}">
+                        <div class="card-body">
+                            <table class="table">
+                                <tr>
+                                    <td colspan="100%" align="left">
+                                        <comment style="font-size: 15px;font-weight: 600" th:text="${hour.summary}"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
     </div>
 
 </div>

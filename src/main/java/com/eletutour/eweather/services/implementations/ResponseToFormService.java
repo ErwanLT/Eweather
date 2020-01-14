@@ -89,15 +89,20 @@ public class ResponseToFormService implements IResponseToFormService {
     private List<Hourly> getHoursFromApiResponse(com.eletutour.eweather.datapoint.Hourly hourly) {
         List<Hourly> hours = new ArrayList<>();
 
+        int id = 0;
+
         for (com.eletutour.eweather.datapoint.HourlyData data:
              hourly.getData()) {
             hours.add(new Hourly()
+                .withId(id)
                 .withTime(dateService.dateFromInstant(data.getTime(), Constants.FORMAT_HH_DD_MM, timezone))
                 .withSummary(data.getSummary())
                 .withIcon(data.getIcon())
                 .withTemperature((int) Math.round(data.getTemperature()))
                 .withApparentTemperature((int) Math.round(data.getApparentTemperature()))
                 .withPrecipProbability((int) Math.round(data.getPrecipProbability())));
+
+            id = id + 1;
         }
         return hours;
     }
