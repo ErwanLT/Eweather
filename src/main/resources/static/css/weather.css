@@ -150,6 +150,10 @@ footer {
     background-image: linear-gradient(to left, #99ccff, #004080);
 }
 
+#map{
+    height:400px;
+}
+
 @media screen and (max-width: 600px) {
     .graph {
         display: none;
