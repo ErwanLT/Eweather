@@ -194,6 +194,17 @@
         </div>
         <div class="col-md-2 mb-4"></div>
     </div>
+    <div class="row">
+        <div class="col-md-2 mb-4"></div>
+        <div class="col-md-8 mb-4">
+            <div id="map">
+            <script type="text/javascript" th:inline="javascript">
+                var lat = [[${forecast.lat}]];
+                var long = [[${forecast.lon}]];
+            </script>
+        </div>
+        <div class="col-md-2 mb-4"></div>
+    </div>
 </div>
 </body>
 </html>

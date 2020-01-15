@@ -59,8 +59,11 @@ public class ResponseToFormService implements IResponseToFormService {
         timezone = responseForecast.getTimezone();
 
         f.setLocation(responseForecast.getLocation());
-        f.setCurrently(getResponseDaily(responseForecast.getCurrently()));
 
+        f.setLat(String.valueOf(responseForecast.getLatitude()));
+        f.setLon(String.valueOf(responseForecast.getLongitude()));
+
+        f.setCurrently(getResponseDaily(responseForecast.getCurrently()));
         f.setWeekSummary(responseForecast.getDaily().getSummary());
         f.setHourSummary(responseForecast.getHourly().getSummary());
         f.setHoursIcon(responseForecast.getHourly().getIcon());
