@@ -27,85 +27,70 @@
                     </div>
                     <div class="panel-collapse collapse" th:id="'hour' + ${hour.id}">
                         <div class="card-body">
-                            <table class="table">
-                                <tr>
-                                    <td colspan="100%" align="left">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
                                         <comment style="font-size: 15px;font-weight: 600" th:text="${hour.summary}"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img th:src="@{'./img/weatherIcon/' + ${hour.icon} + '.png'}" class="img-big"/></td>
-                                    <td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td class="td-width-lg">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col">
+                                        <img th:src="@{'./img/weatherIcon/' + ${hour.icon} + '.png'}" class="img-big"/>
+                                    </div>
+                                    <div class="col col-lg-8">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col">
                                                     <span class="bold-span">Temperature:</span>
-                                                </td>
-                                                <td class="td-width-lg">
                                                     <comment th:text="${hour.temperature}"/>°C
-                                                </td>
-                                                <td class="td-width-lg">
+                                                </div>
+                                                <div class="col">
                                                     <span class="bold-span">Ressentie:</span>
-                                                </td>
-                                                <td class="td-width-lg">
                                                     <comment th:text="${hour.apparentTemperature}"/>°C
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col">
                                                     <span class="bold-span">Couverture Nuageuse:</span>
-                                                </td>
-                                                <td>
                                                     <comment th:text="${hour.cloudCover}" />%
-                                                </td>
-                                                <td>
+                                                </div>
+                                                <div class="col">
                                                     <span class="bold-span">Visibilité:</span>
-                                                </td>
-                                                <td>
                                                     <comment th:text="${hour.visibility}" />+km
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col">
                                                     <span class="bold-span">Pression: </span>
-                                                </td>
-                                                <td>
                                                     <comment th:text="${hour.pressure}" />hPa
-                                                </td>
-                                                <td>
+                                                </div>
+                                                <div class="col">
                                                     <span class="bold-span">Humidité: </span>
-                                                </td>
-                                                <td>
                                                     <comment th:text="${hour.humidity}"/>%
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td-width-lg">
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col">
                                                     <span class="bold-span">Vent:</span>
-                                                </td>
-                                                <td>
                                                     <comment th:text="${hour.windSpeed}"/>Km/h
-                                                </td>
-                                                <td class="td-width-lg">
+                                                </div>
+                                                <div class="col">
                                                     <span class="bold-span">Pluie:</span>
-                                                </td>
-                                                <td>
                                                     <comment th:text="${hour.precipIntensity}" />mm
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td-width-lg">
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col">
                                                     <span class="bold-span">Chance de précipitation:</span>
-                                                </td>
-                                                <td>
                                                     <comment th:text="${hour.precipProbability}"/>%
-                                                </td>
-                                                <td>
+                                                </div>
+                                                <div class="col">
                                                     <span class="bold-span">indice UV:</span>
-                                                </td>
-                                                <td>
                                                     <comment th:if="${hour.uvIndex == 0}" th:text="${hour.uvIndex}" class="uv-low"/>
                                                     <comment th:if="${hour.uvIndex == 1}" th:text="${hour.uvIndex}" class="uv-low"/>
                                                     <comment th:if="${hour.uvIndex == 2}" th:text="${hour.uvIndex}" class="uv-low"/>
@@ -118,12 +103,12 @@
                                                     <comment th:if="${hour.uvIndex == 9}" th:text="${hour.uvIndex}" class="uv-very-hight"/>
                                                     <comment th:if="${hour.uvIndex == 10}" th:text="${hour.uvIndex}" class="uv-very-hight"/>
                                                     <comment th:if="${hour.uvIndex > 10}" th:text="${hour.uvIndex}" class="uv-extrem"/>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
