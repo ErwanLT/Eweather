@@ -31,15 +31,44 @@ function openTab(evt, cityName) {
 
 function initMap() {
     var macarte = null;
-    // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
-    macarte = L.map('map').setView([lat, long], 11);
+
     // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
-    L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-        // Il est toujours bien de laisser le lien vers la source des données
-        attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
-        minZoom: 1,
-        maxZoom: 20
-    }).addTo(macarte);
+
+    var osm = L.tileLayer ('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',    {
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+            minZoom: 1,
+            maxZoom: 20
+        });
+
+    var mapTemp = 'https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=' + openweatherAPIKey;
+    var mapClouds = 'https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=' + openweatherAPIKey;
+    var mapRain = 'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=' + openweatherAPIKey;
+    var mapWind = 'https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=' + openweatherAPIKey;
+
+    var baseMaps = {
+            "Standard": osm
+        };
+
+    var tempLayer = L.tileLayer(mapTemp);
+    var cloudsLayer =  L.tileLayer(mapClouds);
+    var rainLayer  =  L.tileLayer(mapRain);
+    var windLayer  =  L.tileLayer(mapWind);
+
+    var overlayMaps = {
+        "Temperature" : tempLayer,
+        "Nuages" : cloudsLayer,
+        "Pluie" : rainLayer,
+        "Vent" : windLayer
+    }
+
+    macarte = L.map("map", {
+          layers: [osm]
+    }).setView([lat, long], 5);
+
+    L.control.layers(baseMaps, overlayMaps).addTo(macarte);
+
     // Nous ajoutons un marqueur
     var marker = L.marker([lat, long]).addTo(macarte);
 }
+
+//http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?appid=931ae6314b44bbd4f20fc59acbe499df

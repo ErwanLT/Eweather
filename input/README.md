@@ -15,3 +15,13 @@ Currently using
 * java @java.version@
 * Maven 3.5.4
 * Lombok plugin
+
+## Credit
+### Map
+the map displayed is from OpenStreetMap https://www.openstreetmap.fr/
+
+## Weather layers
+the weather layers are displayed thanks to leaflet
+https://leafletjs.com/
+and leaflet-openweathermap
+https://github.com/buche/leaflet-openweathermap

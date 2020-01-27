@@ -286,6 +286,7 @@ public class WeatherController {
             }
             Forecast f = responseToForm.darkskyResponseToForm(forecast);
             model.addAttribute("forecast", f);
+            model.addAttribute("openweatherAPIKey", System.getenv("OPENWEATHER_KEY"));
         }
 
         return "homeV3";
