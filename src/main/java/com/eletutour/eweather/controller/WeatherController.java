@@ -127,7 +127,10 @@ public class WeatherController {
 
     @GetMapping("/helpV3")
     public String helpV3(Model model){
-        return helpV2(model);
+        CoordinateForm form = new CoordinateForm();
+        model.addAttribute(form);
+
+        return "indications";
     }
 
     @PostMapping("/getWeather")
