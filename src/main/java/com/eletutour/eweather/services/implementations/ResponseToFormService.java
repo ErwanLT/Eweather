@@ -59,10 +59,14 @@ public class ResponseToFormService implements IResponseToFormService {
         timezone = responseForecast.getTimezone();
 
         f.setLocation(responseForecast.getLocation());
-        f.setCurrently(getResponseDaily(responseForecast.getCurrently()));
 
+        f.setLat(String.valueOf(responseForecast.getLatitude()));
+        f.setLon(String.valueOf(responseForecast.getLongitude()));
+
+        f.setCurrently(getResponseDaily(responseForecast.getCurrently()));
         f.setWeekSummary(responseForecast.getDaily().getSummary());
         f.setHourSummary(responseForecast.getHourly().getSummary());
+        f.setHoursIcon(responseForecast.getHourly().getIcon());
         f.setWeek(getWeekFromAPIResponse(responseForecast.getDaily()));
         f.setHours(getHoursFromApiResponse(responseForecast.getHourly()));
         f.setAlerts(getAlertsFromApiResponse(responseForecast.getAlerts()));
@@ -88,15 +92,30 @@ public class ResponseToFormService implements IResponseToFormService {
     private List<Hourly> getHoursFromApiResponse(com.eletutour.eweather.datapoint.Hourly hourly) {
         List<Hourly> hours = new ArrayList<>();
 
+        int id = 0;
+
         for (com.eletutour.eweather.datapoint.HourlyData data:
              hourly.getData()) {
             hours.add(new Hourly()
-                .withTime(dateService.dateFromInstant(data.getTime(), Constants.FORMAT_DD_MM_YYYY_HH, timezone))
+                .withId(id)
+                .withTime(dateService.dateFromInstant(data.getTime(), Constants.FORMAT_HH_DD_MM, timezone))
                 .withSummary(data.getSummary())
                 .withIcon(data.getIcon())
                 .withTemperature((int) Math.round(data.getTemperature()))
                 .withApparentTemperature((int) Math.round(data.getApparentTemperature()))
-                .withPrecipProbability((int) Math.round(data.getPrecipProbability())));
+                .withPrecipProbability((int) Math.round(data.getPrecipProbability()))
+                .withDewPoint((int) Math.round(data.getDewPoint()))
+                .withHumidity(data.getHumidity())
+                .withPressure(data.getPressure())
+                .withWindSpeed(data.getWindSpeed())
+                .withUVIndex((int)data.getUvIndex())
+                .withVisibility(data.getVisibility())
+                .withOzone(data.getOzone())
+                .withCloudCover(data.getCloudCover())
+                .withPrecipIntensity(data.getPrecipIntensity())
+            );
+
+            id = id + 1;
         }
         return hours;
     }
@@ -116,7 +135,9 @@ public class ResponseToFormService implements IResponseToFormService {
                 .withWindSpeed(responseForecastCurrently.getWindSpeed())
                 .withUVIndex((int)responseForecastCurrently.getUvIndex())
                 .withVisibility(responseForecastCurrently.getVisibility())
-                .withOzone(responseForecastCurrently.getOzone());
+                .withOzone(responseForecastCurrently.getOzone())
+                .withCloudCover(responseForecastCurrently.getCloudCover())
+                .withPrecipIntensity(responseForecastCurrently.getPrecipIntensity());
     }
 
     private List<Daily> getWeekFromAPIResponse(com.eletutour.eweather.datapoint.Daily daily) {
@@ -135,7 +156,17 @@ public class ResponseToFormService implements IResponseToFormService {
             .withSunsetTime(dateService.dateFromInstant(data.getSunsetTime(), Constants.FORMAT_HH_MM, timezone))
             .withTemperatureMax((int) Math.round(data.getTemperatureMax()))
             .withTemperatureMin((int) Math.round(data.getTemperatureMin()))
-            .withMoonPhase(data.getMoonPhase()));
+            .withMoonPhase(data.getMoonPhase())
+            .withDewPoint((int) Math.round(data.getDewPoint()))
+            .withHumidity(data.getHumidity())
+            .withPressure(data.getPressure())
+            .withWindSpeed(data.getWindSpeed())
+            .withUVIndex(data.getUvIndex())
+            .withVisibility(data.getVisibility())
+            .withOzone(data.getOzone())
+            .withCloudCover(data.getCloudCover())
+            .withPrecipIntensity(data.getPrecipIntensity())
+            .withPrecipProbability(data.getPrecipProbability()));
 
             id = id + 1;
         }

@@ -38,6 +38,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 @Slf4j
 public class WeatherService implements IWeatherService {
@@ -76,6 +78,26 @@ public class WeatherService implements IWeatherService {
         }
     }
 
+    @Override
+    public ForecastResponse getForecast(String location, Date date) throws LocationIQException {
+        if(location.isEmpty()){
+            //ne devrait jamais arriver car champs obligatoire
+            return getFakeForecast();
+        } else {
+            String locationIQResponse = locationIQService.callApi(location);
+            log.info(locationIQResponse);
+
+            if(locationIQResponse.isEmpty()){
+                log.debug("offline mode activate");
+                return getFakeForecast();
+            } else {
+                LocationData[] ld = gsonService.stringToLocations(locationIQResponse);
+                LocationData l = ld[0];
+                return getForecast(l.getLat(), l.getLon(), l.getDisplayName(), date);
+            }
+        }
+    }
+
     private ForecastResponse getFakeForecast() {
         ForecastResponse forecastResponse = gsonService.stringToForecast(FakeForecastUtils.fakeDarkSkyResponse);
         forecastResponse.setLocation("Fake forecast");
@@ -89,6 +111,18 @@ public class WeatherService implements IWeatherService {
         ForecastResponse forecast;
 
         String darkSkyResponse = darkSkyService.callApi(latitude, longitude);
+        log.info(darkSkyResponse);
+
+        forecast = gsonService.stringToForecast(darkSkyResponse);
+        forecast.setLocation(location);
+
+        return forecast;
+    }
+
+    private ForecastResponse getForecast(String lat, String lon, String location, Date date) {
+        ForecastResponse forecast;
+
+        String darkSkyResponse = darkSkyService.callApi(lat, lon, date);
         log.info(darkSkyResponse);
 
         forecast = gsonService.stringToForecast(darkSkyResponse);

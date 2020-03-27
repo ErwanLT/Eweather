@@ -1,0 +1,134 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/headerV3 :: header-css-v3"/>
+</head>
+<body>
+<div th:fragment="currentlyV3">
+    <div class="row">
+        <div class="col-md-2 mb-4">
+        </div>
+        <div class="col-md-8 mb-4">
+            <div class="info">
+                <table>
+                    <tr>
+                        <td>
+                            <img th:src="@{'./img/weatherIcon/' + ${forecast.hoursIcon} + '.png'}" class="img-small"/>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <comment style="color:white; font-size: 25px;font-weight: 600; column-width: 1000px; text-align: center" colspan="3" th:text="${forecast.location}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <comment style="color:white; font-size: 20px;font-weight: 550; column-width: 1000px; text-align: center" th:text="${forecast.hourSummary}" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2 mb-4">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 mb-4"></div>
+        <div class="col-md-8 mb-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <img th:src="@{'./img/weatherIcon/' + ${forecast.currently.icon} + '.png'}" class="img-big"/>
+                    </div>
+                    <div class="col col-lg-8">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <comment style="font-size: 25px;font-weight: 600" th:text="${forecast.currently.temperature}" />°C
+                                </div>
+                                <div class="col-sm">
+                                    <comment style="font-size: 25px;font-weight: 600" th:text="${forecast.currently.summary}" />
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <span class="bold-span">Ressentie:</span>
+                                    <comment th:text="${forecast.currently.apparentTemperature}"/>°C
+                                </div>
+                                <div class="col">
+                                    <span class="bold-span">Couverture Nuageuse:</span>
+                                    <comment th:text="${forecast.currently.cloudCover}" />%
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <span class="bold-span">Vent:</span>
+                                    <comment th:text="${forecast.currently.windSpeed}"/>Km/h
+                                </div>
+                                <div class="col">
+                                    <span class="bold-span">Pluie:</span>
+                                    <comment th:text="${forecast.currently.precipIntensity}" />mm
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <span class="bold-span">indice UV:</span>
+                                    <comment th:if="${forecast.currently.uvIndex == 0}" th:text="${forecast.currently.uvIndex}" class="uv-low"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 1}" th:text="${forecast.currently.uvIndex}" class="uv-low"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 2}" th:text="${forecast.currently.uvIndex}" class="uv-low"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 3}" th:text="${forecast.currently.uvIndex}" class="uv-moderate"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 4}" th:text="${forecast.currently.uvIndex}" class="uv-moderate"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 5}" th:text="${forecast.currently.uvIndex}" class="uv-moderate"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 6}" th:text="${forecast.currently.uvIndex}" class="uv-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 7}" th:text="${forecast.currently.uvIndex}" class="uv-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 8}" th:text="${forecast.currently.uvIndex}" class="uv-very-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 9}" th:text="${forecast.currently.uvIndex}" class="uv-very-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex == 10}" th:text="${forecast.currently.uvIndex}" class="uv-very-hight"/>
+                                    <comment th:if="${forecast.currently.uvIndex > 10}" th:text="${forecast.currently.uvIndex}" class="uv-extrem"/>
+                                </div>
+                                <div class="col">
+                                    <span class="bold-span">Visibilité:</span>
+                                    <comment th:text="${forecast.currently.visibility}" />+km
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <span class="bold-span">Pression: </span>
+                                    <comment th:text="${forecast.currently.pressure}" />hPa
+                                </div>
+                                <div class="col">
+                                    <span class="bold-span">Humidité: </span>
+                                    <comment th:text="${forecast.currently.humidity}"/>%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 mb-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 mb-4"></div>
+        <div class="col-md-8 mb-4">
+            <div id="map"></div>
+            <script type="text/javascript" th:inline="javascript">
+                var lat = [[${forecast.lat}]];
+                var long = [[${forecast.lon}]];
+                var openweatherAPIKey = [[${openweatherAPIKey}]];
+            </script>
+        </div>
+        <div class="col-md-2 mb-4"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -34,13 +34,27 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Hourly {
 
+    private  int id;
     private String time;
     private String summary;
     private String icon;
     private int temperature;
     private int apparentTemperature;
     private int precipProbability;
+    private int dewPoint;
+    private double humidity;
+    private double pressure;
+    private double windSpeed;
+    private int uvIndex;
+    private double visibility;
+    private double ozone;
+    private double cloudCover;
+    private double precipIntensity;
 
+    public Hourly withId(int id){
+        this.setId(id);
+        return this;
+    }
 
     public Hourly withTime(String time){
         this.setTime(time);
@@ -69,6 +83,51 @@ public class Hourly {
 
     public Hourly withPrecipProbability(int precipProbability) {
         this.setPrecipProbability(precipProbability*100);
+        return this;
+    }
+
+    public Hourly withDewPoint(int dewPoint){
+        this.setDewPoint(dewPoint);
+        return this;
+    }
+
+    public Hourly withHumidity(double humidity){
+        this.setHumidity(humidity*100);
+        return this;
+    }
+
+    public Hourly withPressure(double pressure){
+        this.setPressure(pressure);
+        return this;
+    }
+
+    public Hourly withWindSpeed(double windSpeed){
+        this.setWindSpeed(windSpeed);
+        return this;
+    }
+
+    public Hourly withUVIndex(int uvIndex){
+        this.setUvIndex(uvIndex);
+        return this;
+    }
+
+    public Hourly withVisibility(double visibility){
+        this.setVisibility(visibility);
+        return this;
+    }
+
+    public Hourly withOzone(double ozone){
+        this.setOzone(ozone);
+        return this;
+    }
+
+    public Hourly withCloudCover(double cloudCover){
+        this.setCloudCover(cloudCover*100);
+        return this;
+    }
+
+    public Hourly withPrecipIntensity(double precipIntensity){
+        this.setPrecipIntensity(precipIntensity);
         return this;
     }
 }

@@ -29,6 +29,9 @@ import io.swagger.annotations.ApiParam;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 /**
  * form of the main page
@@ -44,9 +47,18 @@ public class CoordinateForm {
     @ApiParam(name = "location", value = "A string like city name, country name, or postal code", required = true, example = "Paris or 75001")
     private String location;
 
-    public CoordinateForm(){}
+    private boolean timeMachine;
 
-    public CoordinateForm(String location) {
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
+
+    public CoordinateForm(){
+        this.timeMachine = false;
+    }
+
+    public CoordinateForm(String location, boolean timeMachine, Date date) {
         this.location = location;
+        this.timeMachine = timeMachine;
+        this.date = date;
     }
 }

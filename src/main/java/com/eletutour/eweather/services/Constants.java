@@ -25,6 +25,11 @@ public class Constants {
         return DARK_SKY_URL + DARK_SKY_KEY + "/" + latitude + "," + longitude + DARK_SKY_LANG + DARK_SKY_SI_UNIT + DARK_SKY_EXCLUDE;
     }
 
+    public static String getDarkSkyUrl(String latitude, String longitude, Long date){
+
+        return DARK_SKY_URL + DARK_SKY_KEY + "/" + latitude + "," + longitude + "," + date + DARK_SKY_LANG + DARK_SKY_SI_UNIT + DARK_SKY_EXCLUDE;
+    }
+
     public static String getLocationiqUrl(String location){
         return LOCATIONIQ_URL1 + LOCATIONIQ_KEY + "&q=" + location + LOCATIONIQ_URL2;
     }
@@ -34,6 +39,8 @@ public class Constants {
     public static final String FORMAT_DD_MM_YYYY_HH_MM = "dd/MM/yyyy hh:mm";
 
     public static final String FORMAT_DD_MM_YYYY_HH = "dd/MM/yyyy HH";
+
+    public static final String FORMAT_HH_DD_MM = "HH'h' dd/MM";
 
     public static final String FORMAT_HH_MM = "hh:mm";
 

@@ -38,10 +38,14 @@ public class Forecast {
 
     private String location;
 
+    private String lat;
+    private String lon;
+
     private Currently currently;
 
     private String weekSummary;
     private String hourSummary;
+    private String hoursIcon;
 
     private List<Hourly> hours;
     private List<Daily> week;

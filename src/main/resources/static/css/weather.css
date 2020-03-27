@@ -118,6 +118,42 @@ footer {
     background-image: url('https://www.materialui.co/materialIcons/navigation/chevron_left_black_144x144.png');
 }
 
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.info{
+    color: white;
+    background-image: linear-gradient(to left, #99ccff, #004080);
+}
+
+#map{
+    height:400px;
+}
+
 @media screen and (max-width: 600px) {
     .graph {
         display: none;
