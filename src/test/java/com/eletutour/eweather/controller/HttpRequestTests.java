@@ -55,7 +55,7 @@ public class HttpRequestTests {
         this.mockMvc.perform(get("/"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>Help</title>")));
+                .andExpect(content().string(containsString("<title>Weather</title>")));
     }
 
     @Test
