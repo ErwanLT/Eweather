@@ -25,21 +25,15 @@
  */
 package com.eletutour.eweather.controller;
 
-import com.eletutour.eweather.datapoint.ForecastResponse;
-import com.eletutour.eweather.form.CoordinateForm;
-import com.eletutour.eweather.form.Forecast;
-import com.eletutour.eweather.services.errors.LocationIQException;
-import com.eletutour.eweather.services.interfaces.IResponseToFormService;
-import com.eletutour.eweather.services.interfaces.IWeatherService;
-import com.eletutour.eweather.utils.MessageHelper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.thymeleaf.util.StringUtils;
 
+import com.eletutour.eweather.dto.Forecast;
+import com.eletutour.eweather.services.interfaces.IWeatherService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Main controller for the {@link com.eletutour.eweather.EweatherApplication} web page
@@ -47,94 +41,45 @@ import org.thymeleaf.util.StringUtils;
  * @author eletutour
  * @since 1.0.0
  */
-@Controller
+@RestController
+@RequestMapping("/eweather")
+@CrossOrigin(origins = "http://localhost:4200")
+@Slf4j
 public class WeatherController {
-
 
     private final IWeatherService weatherService;
 
-
-    private final IResponseToFormService responseToForm;
-
-    private static final String version = "3.0";
-
     @Autowired
-    public WeatherController(IWeatherService weatherService, IResponseToFormService responseToForm){
+    public WeatherController(IWeatherService weatherService) {
         this.weatherService = weatherService;
-        this.responseToForm = responseToForm;
     }
 
     @GetMapping("/")
-    public String index(Model model) {
-        initModel(model);
-
-        return "v3";
+    public String getIndex(){
+        return "index";
     }
 
-    private void initModel(Model model) {
-        CoordinateForm coordinateForm = new CoordinateForm();
-        model.addAttribute(coordinateForm);
-        model.addAttribute("version", version);
+    @GetMapping("/forecast")
+    @ApiOperation(value = "Get the weather forecast for a location",
+            produces = "application/json")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "operation created", response = Forecast.class),
+            @ApiResponse(code = 500, message = "An error occured")
+    }
+    )
+    public Forecast getWeather(@RequestParam(name = "location") String location) throws Exception {
+        return weatherService.getForecast(location);
     }
 
-    @GetMapping("/home")
-    public String home(Model model){
-        initModel(model);
-
-        return "home";
-    }
-
-    @GetMapping("/history")
-    public String history(Model model){
-        initModel(model);
-
-        return "history";
-    }
-
-    @GetMapping("/help")
-    public String help(Model model){
-        initModel(model);
-
-        return "indications";
-    }
-
-    @PostMapping("/getWeather")
-    public String getWeather(@ModelAttribute("coordinateForm")CoordinateForm coordinateForm, Model model){
-
-        initModel(model);
-
-        if(StringUtils.isEmpty(coordinateForm.getLocation())){
-            //should never happened because it's a required field
-            MessageHelper.addDangerAttribute(model, "The location field is null or Empty");
-        } else {
-            ForecastResponse forecast = null;
-
-            if( coordinateForm.isTimeMachine() && coordinateForm.getDate() != null ){
-                try {
-                    forecast = weatherService.getForecast(coordinateForm.getLocation(), coordinateForm.getDate());
-
-                    if ("Fake forecast".equals(forecast.getLocation())){
-                        MessageHelper.addWarningAttribute(model, "This is a fake response because something bad happened.");
-                    }
-                } catch (LocationIQException e) {
-                    MessageHelper.addDangerAttribute(model, e.getMessage());
-                }
-            } else {
-                try {
-                    forecast = weatherService.getForecast(coordinateForm.getLocation());
-
-                    if ("Fake forecast".equals(forecast.getLocation())){
-                        MessageHelper.addWarningAttribute(model, "This is a fake response because something bad happened.");
-                    }
-                } catch (LocationIQException e) {
-                    MessageHelper.addDangerAttribute(model, e.getMessage());
-                }
-            }
-            Forecast f = responseToForm.darkskyResponseToForm(forecast);
-            model.addAttribute("forecast", f);
-            model.addAttribute("openweatherAPIKey", System.getenv("OPENWEATHER_KEY"));
-        }
-
-        return "homeV3";
+    @GetMapping("/forecastLocation")
+    @ApiOperation(value = "Get the weather forecast for the latitude and the longitude",
+            produces = "application/json")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "operation created", response = Forecast.class),
+            @ApiResponse(code = 500, message = "An error occured")
+    })
+    public Forecast getWeather(@RequestParam(name = "latitude")String latitude,
+                               @RequestParam(name = "longitude")String longitude) throws Exception{
+        return weatherService.getForecast(latitude, longitude);
     }
 }
