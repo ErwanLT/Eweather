@@ -67,7 +67,6 @@ public class WeatherController {
             @ApiResponse(code = 500, message = "An error occured")
     }
     )
-    @CrossOrigin("https://profile-analyzer.herokuapp.com")
     public Forecast getWeather(@RequestParam(name = "location") String location) throws Exception {
         return weatherService.getForecast(location);
     }
@@ -79,7 +78,6 @@ public class WeatherController {
             @ApiResponse(code = 200, message = "operation created", response = Forecast.class),
             @ApiResponse(code = 500, message = "An error occured")
     })
-    @CrossOrigin("https://profile-analyzer.herokuapp.com")
     public Forecast getWeather(@RequestParam(name = "latitude")String latitude,
                                @RequestParam(name = "longitude")String longitude) throws Exception{
         return weatherService.getForecast(latitude, longitude);
