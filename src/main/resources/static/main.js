@@ -1169,8 +1169,8 @@ __webpack_require__.r(__webpack_exports__);
 let WeatherServiceService = class WeatherServiceService {
     constructor(http) {
         this.http = http;
-        this.weatherURL = 'http://localhost:8080/eweather/forecast?location=';
-        this.weatherLocationURL = 'http://localhost:8080/eweather/forecastLocation?';
+        this.weatherURL = '/eweather/forecast?location=';
+        this.weatherLocationURL = '/eweather/forecastLocation?';
     }
     getWeather(location) {
         return this.http.get(this.weatherURL + location);
@@ -1278,7 +1278,7 @@ class MapComponent {
     }
 }
 MapComponent.ɵfac = function MapComponent_Factory(t) { return new (t || MapComponent)(); };
-MapComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MapComponent, selectors: [["app-map"]], inputs: { forecast: "forecast" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]], decls: 5, vars: 2, consts: [[1, "row"], [1, "col-md-2", "mb-4"], [1, "col-md-8", "mb-4"], ["leaflet", "", 2, "height", "300px", 3, "leafletOptions", "leafletLayersControl", "leafletMapReady"]], template: function MapComponent_Template(rf, ctx) { if (rf & 1) {
+MapComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MapComponent, selectors: [["app-map"]], inputs: { forecast: "forecast" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵNgOnChangesFeature"]], decls: 5, vars: 2, consts: [[1, "row"], [1, "col-md-2", "mb-4"], [1, "col-md-8", "mb-4"], ["leaflet", "", 2, "height", "300px", 3, "leafletLayersControl", "leafletOptions", "leafletMapReady"]], template: function MapComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
@@ -1290,7 +1290,7 @@ MapComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("leafletOptions", ctx.options)("leafletLayersControl", ctx.layersControl);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("leafletLayersControl", ctx.layersControl)("leafletOptions", ctx.options);
     } }, directives: [_asymmetrik_ngx_leaflet__WEBPACK_IMPORTED_MODULE_3__["LeafletDirective"], _asymmetrik_ngx_leaflet__WEBPACK_IMPORTED_MODULE_3__["LeafletLayersControlDirective"]], styles: ["#map[_ngcontent-%COMP%]{\n  height:400px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWFwL21hcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsWUFBWTtBQUNkIiwiZmlsZSI6InNyYy9hcHAvbWFwL21hcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI21hcHtcbiAgaGVpZ2h0OjQwMHB4O1xufVxuIl19 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](MapComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
@@ -1325,7 +1325,7 @@ class FooterComponent {
     }
 }
 FooterComponent.ɵfac = function FooterComponent_Factory(t) { return new (t || FooterComponent)(); };
-FooterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: FooterComponent, selectors: [["app-footer"]], decls: 14, vars: 0, consts: [[1, "page-footer"], [1, "container"], [1, "list-unstyled", "list-inline", "text-center"], [1, "list-inline-item"], ["aria-label", "Erwan Le Tutour on twitter", "target", "_blank", "rel", "noopener", "href", "https://twitter.com/ErwanLeTutour", "title", "Twitter"], [1, "fab", "fa-twitter"], ["href", "https://www.linkedin.com/in/erwan-le-tutour-32904972/", 1, "btn-floating", "btn-li", "mx-1"], [1, "fab", "fa-linkedin-in"], [1, "footer-copyright", "text-center", "py-3"], ["href", "https://github.com/ErwanLT/"], [1, "fab", "fa-github"]], template: function FooterComponent_Template(rf, ctx) { if (rf & 1) {
+FooterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: FooterComponent, selectors: [["app-footer"]], decls: 14, vars: 0, consts: [[1, "page-footer"], [1, "container"], [1, "list-unstyled", "list-inline", "text-center"], [1, "list-inline-item"], ["aria-label", "Erwan Le Tutour on twitter", "href", "https://twitter.com/ErwanLeTutour", "rel", "noopener", "target", "_blank", "title", "Twitter"], [1, "fab", "fa-twitter"], ["href", "https://www.linkedin.com/in/erwan-le-tutour-32904972/", 1, "btn-floating", "btn-li", "mx-1"], [1, "fab", "fa-linkedin-in"], [1, "footer-copyright", "text-center", "py-3"], ["href", "https://github.com/ErwanLT/"], [1, "fab", "fa-github"]], template: function FooterComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "footer", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "ul", 2);
@@ -1540,7 +1540,7 @@ class FormComponent {
     }
 }
 FormComponent.ɵfac = function FormComponent_Factory(t) { return new (t || FormComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_weather_service_service__WEBPACK_IMPORTED_MODULE_2__["WeatherServiceService"])); };
-FormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: FormComponent, selectors: [["app-form"]], outputs: { forecast: "forecast" }, decls: 15, vars: 3, consts: [[1, "navbar", "navbar-light", "bg-light", "justify-content-between"], [1, "navbar-brand"], [1, "version"], [3, "ngSubmit"], ["locationForm", "ngForm"], [1, "form-inline"], [1, "md-form", "my-0"], ["type", "text", "id", "location", "required", "", "name", "location", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "submit", 1, "btn", "btn-outline-success", "my-2", "my-sm-0", 3, "disabled"]], template: function FormComponent_Template(rf, ctx) { if (rf & 1) {
+FormComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: FormComponent, selectors: [["app-form"]], outputs: { forecast: "forecast" }, decls: 15, vars: 3, consts: [[1, "navbar", "navbar-light", "bg-light", "justify-content-between"], [1, "navbar-brand"], [1, "version"], [3, "ngSubmit"], ["locationForm", "ngForm"], [1, "form-inline"], [1, "md-form", "my-0"], ["id", "location", "name", "location", "required", "", "type", "text", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "submit", 1, "btn", "btn-outline-success", "my-2", "my-sm-0", 3, "disabled"]], template: function FormComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "header");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "nav", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "a", 1);
