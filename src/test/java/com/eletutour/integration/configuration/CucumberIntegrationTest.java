@@ -6,7 +6,6 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/Features",
-                 glue = "fr.eletutour.integration")
+@CucumberOptions(features = "src/test/resources/Features", glue = "com.eletutour.integration.steps")
 public class CucumberIntegrationTest extends SpringIntegrationTest {
 }
