@@ -1,6 +1,7 @@
 package com.eletutour.integration.steps;
 
 import com.eletutour.eweather.dto.Forecast;
+import com.eletutour.eweather.exceptions.ApiError;
 import com.google.gson.Gson;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -53,5 +54,16 @@ public class StepDefsIntegrationTest extends SpringIntegrationTest {
         Assertions.assertThat(f.getCurrently()).isNotNull();
         Assertions.assertThat(f.getDaily()).isNotNull();
         Assertions.assertThat(f.getHourly()).isNotNull();
+    }
+
+    @Then("^I receive an error Response$")
+    public void i_receive_an_error_Response() throws Throwable {
+        String responseBody = latestResponse.getBody();
+        Gson g = new Gson();
+        ApiError error = g.fromJson(responseBody, ApiError.class);
+        Assertions.assertThat(error).isNotNull();
+        Assertions.assertThat(error.getStatus()).isNotNull().isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
+        Assertions.assertThat(error.getMessage()).isNotNull().isNotEmpty().isEqualTo("Une erreur concernant la location est survenue.");
+        Assertions.assertThat(error.getDebugMessage()).isNotNull().isNotEmpty();
     }
 }
